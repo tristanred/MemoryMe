@@ -12,16 +12,7 @@ class GameScene: SKScene {
     fileprivate var label : SKLabelNode?
     fileprivate var spinnyNode : SKShapeNode?
 
-    var movingTestShape: SKSpriteNode?;
-    
-    let left: Int = -500;
-    let right: Int = 500;
-    let top: Int = -500;
-    let bottom: Int = 500;
-
-    var shapeTextures: [SKTexture] = [];
-    var shapesOnScreen: [SKSpriteNode] = [];
-    var shapeVelocities: [(CGFloat, CGFloat)] = [];
+    var areaZone: PlayArea?;
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -31,7 +22,7 @@ class GameScene: SKScene {
         }
         
         // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .resizeFill
         
         return scene
     }
@@ -44,42 +35,19 @@ class GameScene: SKScene {
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
         
-        self.shapeTextures = [SKTexture]();
-        self.shapesOnScreen = [SKSpriteNode]();
+        self.areaZone = PlayArea(area: self.size, scene: self);
         
         let circleTexture = SKTexture(imageNamed: "0_Circle_256.png");
         let triangleTexture = SKTexture(imageNamed: "3_Triangle_256.png");
         let squarexture = SKTexture(imageNamed: "1_Square_256.png");
         let diamondTexture = SKTexture(imageNamed: "2_Diamond_256.png");
         
-        self.shapeTextures.append(circleTexture);
-        self.shapeTextures.append(triangleTexture);
-        self.shapeTextures.append(squarexture);
-        self.shapeTextures.append(diamondTexture);
-        
-        let one = SKSpriteNode(texture: circleTexture);
-        one.position = CGPoint(x: -400, y: -400);
-        self.shapeVelocities.append((5, 5));
-        self.shapesOnScreen.append(one);
-        self.addChild(one);
-        
-        let two = SKSpriteNode(texture: triangleTexture);
-        two.position = CGPoint(x: -400, y: 400);
-        self.shapeVelocities.append((5, 5));
-        self.shapesOnScreen.append(two);
-        self.addChild(two);
-        
-        let three = SKSpriteNode(texture: squarexture);
-        three.position = CGPoint(x: 400,y: -400);
-        self.shapeVelocities.append((5, 5));
-        self.shapesOnScreen.append(three);
-        self.addChild(three);
-        
-        let four = SKSpriteNode(texture: diamondTexture);
-        four.position = CGPoint(x: 400, y: 400);
-        self.shapeVelocities.append((5, 5));
-        self.shapesOnScreen.append(four);
-        self.addChild(four);
+        self.areaZone!.addShape(newShape: GameShape(texture: circleTexture));
+        self.areaZone!.addShape(newShape: GameShape(texture: triangleTexture));
+        self.areaZone!.addShape(newShape: GameShape(texture: squarexture));
+        self.areaZone!.addShape(newShape: GameShape(texture: diamondTexture));
+
+        return;
         
         // Create shape node to use during mouse interaction
         let w = (self.size.width + self.size.height) * 0.05
@@ -127,11 +95,8 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
-        for i in 0...self.shapesOnScreen.count-1
-        {
-            self.shapesOnScreen[i].position.x += self.shapeVelocities[i].0;
-            self.shapesOnScreen[i].position.y += self.shapeVelocities[i].1;
-        }
+        self.areaZone!.updateShapes();
+        
     }
 }
 

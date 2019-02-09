@@ -13,11 +13,13 @@ class PlayArea
 {
     private let Scene: SKScene;
     
-    var areaRectangle: CGRect;
+    var areaRectangle: CGSize;
     
     var currentShapes: [GameShape] = [];
     
-    init(area: CGRect, scene: SKScene)
+    let velocityBounds: CGFloat = 5;
+    
+    init(area: CGSize, scene: SKScene)
     {
         Scene = scene;
         areaRectangle = area;
@@ -26,6 +28,11 @@ class PlayArea
     func addShape(newShape: GameShape)
     {
         currentShapes.append(newShape);
+        Scene.addChild(newShape);
+        newShape.anchorPoint = self.Scene.anchorPoint;
+        
+        newShape.velocity.dx = CGFloat.random(in: -velocityBounds...velocityBounds);
+        newShape.velocity.dy = CGFloat.random(in: -velocityBounds...velocityBounds);
     }
     
     func updateShapes()
