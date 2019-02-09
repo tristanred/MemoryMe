@@ -23,6 +23,8 @@ class PlayArea
     {
         Scene = scene;
         areaRectangle = area;
+        
+        createAreaBox();
     }
     
     func addShape(newShape: GameShape)
@@ -77,5 +79,23 @@ class PlayArea
                 shape.velocity.dy *= -1;
             }
         }
+    }
+    
+    func processTouch(at point: CGPoint)
+    {
+        //var res = Scene.atPoint(point)
+        let nodes = self.Scene.nodes(at: point)
+        Scene.removeChildren(in: nodes);
+    }
+    
+    func createAreaBox()
+    {
+        let boxShape = SKShapeNode(rect: Scene.frame);
+        
+        boxShape.lineWidth = 2;
+        boxShape.strokeColor = .red;
+        boxShape.glowWidth = 0.5;
+        
+        Scene.insertChild(boxShape, at: 0);
     }
 }
