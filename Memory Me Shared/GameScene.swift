@@ -15,6 +15,7 @@ class GameScene: SKScene {
     var scaleXLabel: SKLabelNode?;
     var scaleYLabel: SKLabelNode?;
 
+    var sequence: ShapeSequence?;
     var areaZone: PlayArea?;
     
     class func newGameScene() -> GameScene
@@ -48,19 +49,40 @@ class GameScene: SKScene {
         
         InitializeTextureMap(withTextureSet: ShapeAssetsX128);
         
-        let circleTeture = ShapeTextureMap[.CIRCLE];
-        let triangleTexture = ShapeTextureMap[.TRIANGLE];
-        let squarexture = ShapeTextureMap[.SQUARE];
-        let diamondTexture = ShapeTextureMap[.DIAMOND];
-//        let circleTeture = SKTexture(imageNamed: "0_Circle_128.png");
-//        let triangleTexture = SKTexture(imageNamed: "3_Triangle_128.png");
-//        let squarexture = SKTexture(imageNamed: "1_Square_128.png");
-//        let diamondTexture = SKTexture(imageNamed: "2_Diamond_128.png");
+        sequence = ShapeSequence(withStartingShapeCount: 1);
         
-        self.areaZone!.addShape(newShape: GameShape(texture: circleTeture));
-        self.areaZone!.addShape(newShape: GameShape(texture: triangleTexture));
-        self.areaZone!.addShape(newShape: GameShape(texture: squarexture));
-        self.areaZone!.addShape(newShape: GameShape(texture: diamondTexture));
+        self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
+        
+//        let circleTeture = ShapeTextureMap[.CIRCLE];
+//        let triangleTexture = ShapeTextureMap[.TRIANGLE];
+//        let squareTexture = ShapeTextureMap[.SQUARE];
+//        let diamondTexture = ShapeTextureMap[.DIAMOND];
+//
+//        self.areaZone!.addShape(newShape: GameShape(texture: circleTeture));
+//        self.areaZone!.addShape(newShape: GameShape(texture: triangleTexture));
+//        self.areaZone!.addShape(newShape: GameShape(texture: squareTexture));
+//        self.areaZone!.addShape(newShape: GameShape(texture: diamondTexture));
+    }
+    
+    public func VerifyGameStatus()
+    {
+        if(sequence!.IsFinished())
+        {
+            self.areaZone!.clear();
+            self.sequence!.EvolveSequence();
+            self.sequence!.RestartSequence();
+            
+            self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
+        }
+        else if(sequence!.SequenceIsCorrect() == false)
+        {
+            // Restart
+            self.areaZone!.clear();
+            self.sequence!.RestartSequence();
+            
+            self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
+            
+        }
     }
     
     #if os(watchOS)
@@ -103,42 +125,18 @@ extension GameScene
 {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-//        if let label = self.label
-//        {
-//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-//        }
-        
         for t in touches
         {
-            self.areaZone?.processTouch(at: t.location(in: self));
-            //self.makeSpinny(at: t.location(in: self), color: SKColor.green)
+            let result = self.areaZone?.processTouch(at: t.location(in: self));
+            
+            if(result != ShapesKind.NONE)
+            {
+                self.sequence?.ShapeClicked(kind: result!);
+                
+                self.VerifyGameStatus();
+            }
         }
     }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        for t in touches
-        {
-            //self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-//        for t in touches
-//        {
-//            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-//        }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-//        for t in touches
-//        {
-//            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-//        }
-    }
-    
    
 }
 #endif
@@ -147,28 +145,18 @@ extension GameScene
 // Mouse-based event handling
 extension GameScene
 {
-    override func mouseDown(with event: NSEvent)
-    {
-//        if let label = self.label
-//        {
-//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-//        }
-        
-        
-        // self.makeSpinny(at: event.location(in: self), color: SKColor.green)
-    }
-    
-    override func mouseDragged(with event: NSEvent)
-    {
-        //self.makeSpinny(at: event.location(in: self), color: SKColor.blue)
-    }
-    
     override func mouseUp(with event: NSEvent)
     {
-        self.areaZone?.processTouch(at: event.location(in: self));
+        let result = self.areaZone?.processTouch(at: event.location(in: self));
         
-        //self.makeSpinny(at: event.location(in: self), color: SKColor.red)
-    }
+        if(result != ShapesKind.NONE)
+        {
+            self.sequence?.ShapeClicked(kind: result!);
+            
+            self.VerifyGameStatus();
+        }
 
+        self.makeSpinny(at: event.location(in: self), color: SKColor.red)
+    }
 }
 #endif

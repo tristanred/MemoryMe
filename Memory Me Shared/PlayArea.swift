@@ -18,7 +18,7 @@ class PlayArea
     
     var currentShapes: [GameShape] = [];
     
-    let velocityBounds: CGFloat = 5;
+    let velocityBounds: CGFloat = 3;
     
     init(area: CGRect, scene: SKScene)
     {
@@ -43,6 +43,28 @@ class PlayArea
         
         newShape.velocity.dx = CGFloat.random(in: -velocityBounds...velocityBounds);
         newShape.velocity.dy = CGFloat.random(in: -velocityBounds...velocityBounds);
+    }
+    
+    func addShape(fromListOfShapes list: [GameShape])
+    {
+        for i in list
+        {
+            self.addShape(newShape: i);
+        }
+    }
+    
+    func clear()
+    {
+        let nodes = self.Scene.children;
+        
+        for nodeCheck in nodes
+        {
+            if(nodeCheck is GameShape)
+            {
+                Scene.removeChildren(in: [nodeCheck]);
+                currentShapes.removeAll();
+            }
+        }
     }
     
     func updateShapes()
@@ -89,7 +111,7 @@ class PlayArea
         }
     }
     
-    func processTouch(at point: CGPoint)
+    func processTouch(at point: CGPoint) -> ShapesKind
     {
         let nodes = self.Scene.nodes(at: point);
         
@@ -98,8 +120,12 @@ class PlayArea
             if(nodeCheck is GameShape)
             {
                 Scene.removeChildren(in: [nodeCheck]);
+                
+                return (nodeCheck as! GameShape).ShapeKind;
             }
         }
+        
+        return ShapesKind.NONE;
     }
     
     func createDebugBoxArea()

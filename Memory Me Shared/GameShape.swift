@@ -11,5 +11,17 @@ import SpriteKit
 
 class GameShape : SKSpriteNode
 {
-    var velocity: CGVector = CGVector(dx: 0, dy: 0);
+    public var ShapeKind: ShapesKind = .NONE;
+    
+    public var velocity: CGVector = CGVector(dx: 0, dy: 0);
+    
+    static func random() -> GameShape
+    {
+        let randomShape = ShapeTextureMap.randomElement();
+        
+        let sprite: GameShape = GameShape(texture: randomShape?.value);
+        sprite.ShapeKind = randomShape!.key;
+        
+        return sprite;
+    }
 }

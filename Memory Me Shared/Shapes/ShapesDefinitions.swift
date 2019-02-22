@@ -11,6 +11,7 @@ import SpriteKit
 
 enum ShapesKind
 {
+    case NONE;
     case SQUARE;
     case CIRCLE;
     case TRIANGLE;
