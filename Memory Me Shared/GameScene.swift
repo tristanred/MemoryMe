@@ -11,10 +11,14 @@ import SpriteKit
 class GameScene: SKScene {
     fileprivate var label : SKLabelNode?
     fileprivate var spinnyNode : SKShapeNode?
+    
+    var scaleXLabel: SKLabelNode?;
+    var scaleYLabel: SKLabelNode?;
 
     var areaZone: PlayArea?;
     
-    class func newGameScene() -> GameScene {
+    class func newGameScene() -> GameScene
+    {
         // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
             print("Failed to load GameScene.sks")
@@ -22,56 +26,41 @@ class GameScene: SKScene {
         }
         
         // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill;
+        //scene.scaleMode = .aspectFill;
+        scene.scaleMode = .resizeFill;
         
-        return scene
+        return scene;
     }
     
-    func setUpScene() {
+    func setUpScene()
+    {
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.label {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
+        self.scaleXLabel = self.childNode(withName: "//ScaleX_Label") as? SKLabelNode;
+        self.scaleYLabel = self.childNode(withName: "//ScaleY_Label") as? SKLabelNode;
+
+        let myFrame = self.scene!.view!.frame;
+        self.areaZone = PlayArea(area: myFrame, scene: self);
         
-        self.areaZone = PlayArea(area: self.size, scene: self);
+        InitializeTextureMap(withTextureSet: ShapeAssetsX128);
         
-        let circleTexture = SKTexture(imageNamed: "0_Circle_256.png");
-        let triangleTexture = SKTexture(imageNamed: "3_Triangle_256.png");
-        let squarexture = SKTexture(imageNamed: "1_Square_256.png");
-        let diamondTexture = SKTexture(imageNamed: "2_Diamond_256.png");
+        let circleTeture = ShapeTextureMap[.CIRCLE];
+        let triangleTexture = ShapeTextureMap[.TRIANGLE];
+        let squarexture = ShapeTextureMap[.SQUARE];
+        let diamondTexture = ShapeTextureMap[.DIAMOND];
+//        let circleTeture = SKTexture(imageNamed: "0_Circle_128.png");
+//        let triangleTexture = SKTexture(imageNamed: "3_Triangle_128.png");
+//        let squarexture = SKTexture(imageNamed: "1_Square_128.png");
+//        let diamondTexture = SKTexture(imageNamed: "2_Diamond_128.png");
         
-        self.areaZone!.addShape(newShape: GameShape(texture: circleTexture));
+        self.areaZone!.addShape(newShape: GameShape(texture: circleTeture));
         self.areaZone!.addShape(newShape: GameShape(texture: triangleTexture));
         self.areaZone!.addShape(newShape: GameShape(texture: squarexture));
         self.areaZone!.addShape(newShape: GameShape(texture: diamondTexture));
-
-        return;
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-            
-            #if os(watchOS)
-                // For watch we just periodically create one of these and let it spin
-                // For other platforms we let user touch/mouse events create these
-                spinnyNode.position = CGPoint(x: 0.0, y: 0.0)
-                spinnyNode.strokeColor = SKColor.red
-                self.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2.0),
-                                                                   SKAction.run({
-                                                                       let n = spinnyNode.copy() as! SKShapeNode
-                                                                       self.addChild(n)
-                                                                   })])))
-            #endif
-        }
     }
     
     #if os(watchOS)
@@ -81,6 +70,14 @@ class GameScene: SKScene {
     #else
     override func didMove(to view: SKView) {
         self.setUpScene()
+    }
+    
+    override func didChangeSize(_ oldSize: CGSize) {
+        let myFrame = self.scene?.view?.frame;
+        if(myFrame != nil)
+        {
+            self.areaZone!.resetSize(myFrame!);
+        }
     }
     #endif
 
@@ -113,7 +110,7 @@ extension GameScene
         
         for t in touches
         {
-            self.areaZone?.processTouch(at: event.location(in: self));
+            self.areaZone?.processTouch(at: t.location(in: self));
             //self.makeSpinny(at: t.location(in: self), color: SKColor.green)
         }
     }

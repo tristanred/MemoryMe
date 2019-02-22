@@ -12,19 +12,27 @@ import SpriteKit
 class PlayArea
 {
     private let Scene: SKScene;
+    private var debugRect: SKShapeNode?;
     
-    var areaRectangle: CGSize;
+    var areaRectangle: CGRect;
     
     var currentShapes: [GameShape] = [];
     
     let velocityBounds: CGFloat = 5;
     
-    init(area: CGSize, scene: SKScene)
+    init(area: CGRect, scene: SKScene)
     {
         Scene = scene;
         areaRectangle = area;
         
-        createAreaBox();
+        createDebugBoxArea();
+    }
+    
+    func resetSize(_ newSize: CGRect)
+    {
+        areaRectangle = newSize;
+        self.debugRect?.removeFromParent();
+        createDebugBoxArea();
     }
     
     func addShape(newShape: GameShape)
@@ -83,19 +91,25 @@ class PlayArea
     
     func processTouch(at point: CGPoint)
     {
-        //var res = Scene.atPoint(point)
-        let nodes = self.Scene.nodes(at: point)
-        Scene.removeChildren(in: nodes);
+        let nodes = self.Scene.nodes(at: point);
+        
+        for nodeCheck in nodes
+        {
+            if(nodeCheck is GameShape)
+            {
+                Scene.removeChildren(in: [nodeCheck]);
+            }
+        }
     }
     
-    func createAreaBox()
+    func createDebugBoxArea()
     {
-        let boxShape = SKShapeNode(rect: Scene.frame);
+        self.debugRect = SKShapeNode(rect: areaRectangle);
         
-        boxShape.lineWidth = 2;
-        boxShape.strokeColor = .red;
-        boxShape.glowWidth = 0.5;
+        self.debugRect!.lineWidth = 2;
+        self.debugRect!.strokeColor = .red;
+        self.debugRect!.glowWidth = 0.5;
         
-        Scene.insertChild(boxShape, at: 0);
+        Scene.insertChild(self.debugRect!, at: 0);
     }
 }
