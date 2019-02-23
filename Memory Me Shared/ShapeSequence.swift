@@ -23,7 +23,7 @@ class ShapeSequence
     {
         for _ in 0..<count
         {
-            let newShape = GameShape.random();
+            let newShape = GameShape.random()!;
             
             shapesInPlay.append(newShape);
             shapeSequence.append(newShape.ShapeKind);
@@ -47,7 +47,7 @@ class ShapeSequence
     
     func EvolveSequence()
     {
-        let newShape = GameShape.random();
+        let newShape = GameShape.random()!;
         
         shapesInPlay.append(newShape);
         shapeSequence.append(newShape.ShapeKind);

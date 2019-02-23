@@ -66,6 +66,8 @@
 		6A26C1572220E9C700CD649D /* Square_x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A26C1302220E9C700CD649D /* Square_x1024.png */; };
 		6A26C1582220E9C700CD649D /* Circle_x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A26C1312220E9C700CD649D /* Circle_x256.png */; };
 		6A26C1592220E9C700CD649D /* Circle_x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A26C1312220E9C700CD649D /* Circle_x256.png */; };
+		6A26C15B2220F52300CD649D /* MemoryMeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A26C15A2220F52300CD649D /* MemoryMeGame.swift */; };
+		6A26C15C2220F52300CD649D /* MemoryMeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A26C15A2220F52300CD649D /* MemoryMeGame.swift */; };
 		6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6A9EAC0C220E707C0094B159 /* PlayArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9EAC0B220E707C0094B159 /* PlayArea.swift */; };
 		6A9EAC0D220E707C0094B159 /* PlayArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9EAC0B220E707C0094B159 /* PlayArea.swift */; };
@@ -110,6 +112,7 @@
 		6A26C12F2220E9C700CD649D /* Square_x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Square_x256.png; sourceTree = "<group>"; };
 		6A26C1302220E9C700CD649D /* Square_x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Square_x1024.png; sourceTree = "<group>"; };
 		6A26C1312220E9C700CD649D /* Circle_x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circle_x256.png; sourceTree = "<group>"; };
+		6A26C15A2220F52300CD649D /* MemoryMeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMeGame.swift; sourceTree = "<group>"; };
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
 		6A9EAC0B220E707C0094B159 /* PlayArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +157,7 @@
 				6A9EAC0B220E707C0094B159 /* PlayArea.swift */,
 				6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */,
 				6A221ED8221F8C54003FD05A /* ShapeSequence.swift */,
+				6A26C15A2220F52300CD649D /* MemoryMeGame.swift */,
 			);
 			path = "Memory Me Shared";
 			sourceTree = "<group>";
@@ -373,6 +377,7 @@
 			files = (
 				6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */,
 				6A9EAC0C220E707C0094B159 /* PlayArea.swift in Sources */,
+				6A26C15B2220F52300CD649D /* MemoryMeGame.swift in Sources */,
 				6A002CAC21DF0410005B31F5 /* GameScene.swift in Sources */,
 				6A221EDD221F9044003FD05A /* ShapesDefinitions.swift in Sources */,
 				6A002C9221DF0410005B31F5 /* GameViewController.swift in Sources */,
@@ -387,6 +392,7 @@
 			files = (
 				6A9EAC0D220E707C0094B159 /* PlayArea.swift in Sources */,
 				6A002CAD21DF0410005B31F5 /* GameScene.swift in Sources */,
+				6A26C15C2220F52300CD649D /* MemoryMeGame.swift in Sources */,
 				6AF39622220E7EC00073B207 /* GameShape.swift in Sources */,
 				6A221EDE221F9044003FD05A /* ShapesDefinitions.swift in Sources */,
 				6A002CA321DF0410005B31F5 /* GameViewController.swift in Sources */,

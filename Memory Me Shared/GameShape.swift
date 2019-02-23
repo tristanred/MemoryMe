@@ -15,8 +15,13 @@ class GameShape : SKSpriteNode
     
     public var velocity: CGVector = CGVector(dx: 0, dy: 0);
     
-    static func random() -> GameShape
+    static func random() -> GameShape?
     {
+        if(ShapeTextureMap.isEmpty)
+        {
+            return nil;
+        }
+        
         let randomShape = ShapeTextureMap.randomElement();
         
         let sprite: GameShape = GameShape(texture: randomShape?.value);

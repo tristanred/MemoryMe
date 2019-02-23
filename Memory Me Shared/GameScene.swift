@@ -52,16 +52,6 @@ class GameScene: SKScene {
         sequence = ShapeSequence(withStartingShapeCount: 1);
         
         self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
-        
-//        let circleTeture = ShapeTextureMap[.CIRCLE];
-//        let triangleTexture = ShapeTextureMap[.TRIANGLE];
-//        let squareTexture = ShapeTextureMap[.SQUARE];
-//        let diamondTexture = ShapeTextureMap[.DIAMOND];
-//
-//        self.areaZone!.addShape(newShape: GameShape(texture: circleTeture));
-//        self.areaZone!.addShape(newShape: GameShape(texture: triangleTexture));
-//        self.areaZone!.addShape(newShape: GameShape(texture: squareTexture));
-//        self.areaZone!.addShape(newShape: GameShape(texture: diamondTexture));
     }
     
     public func VerifyGameStatus()
