@@ -31,10 +31,10 @@ enum ShapeTextureSet
  */
 let ShapeAssetsX64: [ShapesKind: String] =
 [
-    ShapesKind.SQUARE: "1_Square_64.png",
-    ShapesKind.CIRCLE: "0_Circle_64.png",
-    ShapesKind.TRIANGLE: "3_Triangle_64.png",
-    ShapesKind.DIAMOND: "2_Diamond_64.png"
+    ShapesKind.SQUARE: "Square_x64.png",
+    ShapesKind.CIRCLE: "Circle_x64.png",
+    ShapesKind.TRIANGLE: "Triangle_x64.png",
+    ShapesKind.DIAMOND: "Diamond_x64.png"
 ];
 
 /**
@@ -42,10 +42,10 @@ let ShapeAssetsX64: [ShapesKind: String] =
  */
 let ShapeAssetsX128: [ShapesKind: String] =
 [
-    ShapesKind.SQUARE: "1_Square_128.png",
-    ShapesKind.CIRCLE: "0_Circle_128.png",
-    ShapesKind.TRIANGLE: "3_Triangle_128.png",
-    ShapesKind.DIAMOND: "2_Diamond_128.png"
+    ShapesKind.SQUARE: "Square_x128.png",
+    ShapesKind.CIRCLE: "Circle_x128.png",
+    ShapesKind.TRIANGLE: "Triangle_x128.png",
+    ShapesKind.DIAMOND: "Diamond_x128.png"
 ];
 
 /**
@@ -53,10 +53,10 @@ let ShapeAssetsX128: [ShapesKind: String] =
  */
 let ShapeAssetsX256: [ShapesKind: String] =
 [
-    ShapesKind.SQUARE: "1_Square_256.png",
-    ShapesKind.CIRCLE: "0_Circle_256.png",
-    ShapesKind.TRIANGLE: "3_Triangle_256.png",
-    ShapesKind.DIAMOND: "2_Diamond_256.png"
+    ShapesKind.SQUARE: "Square_x256.png",
+    ShapesKind.CIRCLE: "Circle_x256.png",
+    ShapesKind.TRIANGLE: "Triangle_x256.png",
+    ShapesKind.DIAMOND: "Diamond_x256.png"
 ];
 
 /**
@@ -64,10 +64,10 @@ let ShapeAssetsX256: [ShapesKind: String] =
  */
 let ShapeAssetsX512: [ShapesKind: String] =
 [
-    ShapesKind.SQUARE: "1_Square_512.png",
-    ShapesKind.CIRCLE: "0_Circle_512.png",
-    ShapesKind.TRIANGLE: "3_Triangle_512.png",
-    ShapesKind.DIAMOND: "2_Diamond_512.png"
+    ShapesKind.SQUARE: "Square_x512.png",
+    ShapesKind.CIRCLE: "Circle_x512.png",
+    ShapesKind.TRIANGLE: "Triangle_x512.png",
+    ShapesKind.DIAMOND: "Diamond_x512.png"
 ];
 
 /**
