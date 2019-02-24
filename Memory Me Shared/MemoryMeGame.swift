@@ -17,17 +17,6 @@ import SpriteKit
  */
 class MemoryMeGame
 {
-    enum GameState
-    {
-        case INIT;
-        case LOADED;
-        case READY; // After texture are loaded, before game is started. Might not need that state
-        case STARTED;
-        case ENDED;
-    }
-    
-    private var GameState: GameState;
-    
     private let Scene: SKScene;
     
     private var assetsAreLoaded: Bool;
@@ -37,8 +26,6 @@ class MemoryMeGame
     
     init(_ scene: SKScene, _ startingSize: CGRect)
     {
-        self.GameState = .INIT;
-        
         self.Scene = scene;
         
         self.Area = PlayArea(area: startingSize, scene: self.Scene)
@@ -59,7 +46,6 @@ class MemoryMeGame
         InitializeTextureMap(withTextureSet: ShapeAssetsX128);
         
         assetsAreLoaded = true;
-        self.GameState = .LOADED;
     }
 
     func StartNewGame()
