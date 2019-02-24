@@ -9,6 +9,17 @@
 import Foundation
 import SpriteKit
 
+/**
+ The sequence class handles the list of shapes that needs to be clicked in a
+ specific order to finish the game.
+ 
+ This class handles many arrays. Some of them are concrete GameShape classes
+ and others are the ordered list of shape kinds to click.
+ 
+ Because this class directly creates GameShape instances in the constructor,
+ the global function InitializeTextureMap must be called before creating a
+ ShapeSequence.
+ */
 class ShapeSequence
 {
     private var shapesInPlay: [GameShape] = [];
@@ -27,7 +38,6 @@ class ShapeSequence
             
             shapesInPlay.append(newShape);
             shapeSequence.append(newShape.ShapeKind);
-            
         }
     }
     

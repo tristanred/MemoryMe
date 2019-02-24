@@ -17,6 +17,7 @@ class GameScene: SKScene {
 
     var sequence: ShapeSequence?;
     var areaZone: PlayArea?;
+    var Game: MemoryMeGame?;
     
     class func newGameScene() -> GameScene
     {
@@ -43,69 +44,41 @@ class GameScene: SKScene {
         }
         self.scaleXLabel = self.childNode(withName: "//ScaleX_Label") as? SKLabelNode;
         self.scaleYLabel = self.childNode(withName: "//ScaleY_Label") as? SKLabelNode;
-
+        
         let myFrame = self.scene!.view!.frame;
-        self.areaZone = PlayArea(area: myFrame, scene: self);
+
+        self.Game = MemoryMeGame(self, myFrame);
         
-        InitializeTextureMap(withTextureSet: ShapeAssetsX128);
+        self.Game?.LoadTextures();
+        self.Game?.StartNewGame();
         
-        sequence = ShapeSequence(withStartingShapeCount: 1);
-        
-        self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
-    }
-    
-    public func VerifyGameStatus()
-    {
-        if(sequence!.IsFinished())
-        {
-            self.areaZone!.clear();
-            self.sequence!.EvolveSequence();
-            self.sequence!.RestartSequence();
-            
-            self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
-        }
-        else if(sequence!.SequenceIsCorrect() == false)
-        {
-            // Restart
-            self.areaZone!.clear();
-            self.sequence!.RestartSequence();
-            
-            self.areaZone!.addShape(fromListOfShapes: sequence!.GetSequenceShapes());
-            
-        }
     }
     
     #if os(watchOS)
-    override func sceneDidLoad() {
+    override func sceneDidLoad()
+    {
         self.setUpScene()
     }
     #else
-    override func didMove(to view: SKView) {
+    override func didMove(to view: SKView)
+    {
         self.setUpScene()
     }
     
-    override func didChangeSize(_ oldSize: CGSize) {
+    override func didChangeSize(_ oldSize: CGSize)
+    {
         let myFrame = self.scene?.view?.frame;
         if(myFrame != nil)
         {
-            self.areaZone!.resetSize(myFrame!);
+            self.Game?.ResizeGame(withFrame: myFrame!);
         }
     }
     #endif
-
-    func makeSpinny(at pos: CGPoint, color: SKColor) {
-        if let spinny = self.spinnyNode?.copy() as! SKShapeNode? {
-            spinny.position = pos
-            spinny.strokeColor = color
-            self.addChild(spinny)
-        }
-    }
     
-    override func update(_ currentTime: TimeInterval) {
+    override func update(_ currentTime: TimeInterval)
+    {
         // Called before each frame is rendered
-        
-        self.areaZone!.updateShapes();
-        
+        self.Game?.Update();
     }
 }
 
@@ -117,14 +90,7 @@ extension GameScene
     {
         for t in touches
         {
-            let result = self.areaZone?.processTouch(at: t.location(in: self));
-            
-            if(result != ShapesKind.NONE)
-            {
-                self.sequence?.ShapeClicked(kind: result!);
-                
-                self.VerifyGameStatus();
-            }
+            self.Game?.ProcessClick(at: t.location(in: self));
         }
     }
    
@@ -137,16 +103,7 @@ extension GameScene
 {
     override func mouseUp(with event: NSEvent)
     {
-        let result = self.areaZone?.processTouch(at: event.location(in: self));
-        
-        if(result != ShapesKind.NONE)
-        {
-            self.sequence?.ShapeClicked(kind: result!);
-            
-            self.VerifyGameStatus();
-        }
-
-        self.makeSpinny(at: event.location(in: self), color: SKColor.red)
+        self.Game?.ProcessClick(at: event.location(in: self));
     }
 }
 #endif

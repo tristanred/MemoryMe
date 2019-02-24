@@ -18,7 +18,7 @@ class PlayArea
     
     var currentShapes: [GameShape] = [];
     
-    let velocityBounds: CGFloat = 3;
+    let velocityBounds: CGFloat = 2;
     
     init(area: CGRect, scene: SKScene)
     {
