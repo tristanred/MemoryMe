@@ -8,24 +8,27 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
-    fileprivate var label : SKLabelNode?
-    fileprivate var spinnyNode : SKShapeNode?
+class GameScene: SKScene
+{
+    // Scene size properties
+    var initialWidth: CGFloat = 0;
+    var initialHeight: CGFloat = 0;
     
-    var scaleXLabel: SKLabelNode?;
-    var scaleYLabel: SKLabelNode?;
-
-    var sequence: ShapeSequence?;
-    var areaZone: PlayArea?;
+    var scaleFactorX: CGFloat = 0;
+    var scaleFactorY: CGFloat = 0;
+    
     var Game: MemoryMeGame?;
     
     class func newGameScene() -> GameScene
     {
         // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks")
-            abort()
+            print("Failed to load GameScene.sks");
+            abort();
         }
+        
+        scene.initialWidth = scene.size.width;
+        scene.initialHeight = scene.size.height;
         
         // Set the scale mode to scale to fit the window
         //scene.scaleMode = .aspectFill;
@@ -36,15 +39,6 @@ class GameScene: SKScene {
     
     func setUpScene()
     {
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        self.scaleXLabel = self.childNode(withName: "//ScaleX_Label") as? SKLabelNode;
-        self.scaleYLabel = self.childNode(withName: "//ScaleY_Label") as? SKLabelNode;
-        
         let myFrame = self.scene!.view!.frame;
 
         self.Game = MemoryMeGame(self, myFrame);
@@ -54,12 +48,6 @@ class GameScene: SKScene {
         
     }
     
-    #if os(watchOS)
-    override func sceneDidLoad()
-    {
-        self.setUpScene()
-    }
-    #else
     override func didMove(to view: SKView)
     {
         self.setUpScene()
@@ -72,8 +60,12 @@ class GameScene: SKScene {
         {
             self.Game?.ResizeGame(withFrame: myFrame!);
         }
+        
+        self.scaleFactorX = self.size.width / self.initialWidth;
+        self.scaleFactorY = self.size.height / self.initialHeight;
+        
+        print("Current scale factor : x = \(self.scaleFactorX), y = \(self.scaleFactorY)");
     }
-    #endif
     
     override func update(_ currentTime: TimeInterval)
     {
