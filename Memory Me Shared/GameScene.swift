@@ -45,12 +45,11 @@ class GameScene: SKScene
         
         self.Game?.LoadTextures();
         self.Game?.StartNewGame();
-        
     }
     
     override func didMove(to view: SKView)
     {
-        self.setUpScene()
+        self.setUpScene();
     }
     
     override func didChangeSize(_ oldSize: CGSize)
@@ -61,6 +60,11 @@ class GameScene: SKScene
             self.Game?.ResizeGame(withFrame: myFrame!);
         }
         
+        self.PrintScaleFactor();
+    }
+    
+    func PrintScaleFactor()
+    {
         self.scaleFactorX = self.size.width / self.initialWidth;
         self.scaleFactorY = self.size.height / self.initialHeight;
         
@@ -69,7 +73,6 @@ class GameScene: SKScene
     
     override func update(_ currentTime: TimeInterval)
     {
-        // Called before each frame is rendered
         self.Game?.Update();
     }
 }
@@ -85,7 +88,6 @@ extension GameScene
             self.Game?.ProcessClick(at: t.location(in: self));
         }
     }
-   
 }
 #endif
 

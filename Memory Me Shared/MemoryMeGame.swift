@@ -61,6 +61,15 @@ class MemoryMeGame
         self.Area?.addShape(fromListOfShapes: (self.MemorySequence?.GetSequenceShapes())!);
     }
     
+    /**
+     Function called after every player move. This checks if the player has
+     clicked on the correct shape and takes action depending on the result.
+     
+     If the correct shape is clicked the game keeps going.
+     If the wrong shape is clicked, we reset the game.
+     If the last shape was clicked, we finish the game and increase the sequence
+     size.
+    */
     public func VerifyGameStatus()
     {
         if(self.MemorySequence!.IsFinished())
