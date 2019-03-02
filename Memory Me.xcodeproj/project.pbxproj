@@ -72,6 +72,8 @@
 		6A9EAC0C220E707C0094B159 /* PlayArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9EAC0B220E707C0094B159 /* PlayArea.swift */; };
 		6A9EAC0D220E707C0094B159 /* PlayArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9EAC0B220E707C0094B159 /* PlayArea.swift */; };
 		6AF39622220E7EC00073B207 /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
+		6AF60A07222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
+		6AF60A08222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,7 @@
 		6A26C15A2220F52300CD649D /* MemoryMeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMeGame.swift; sourceTree = "<group>"; };
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
 		6A9EAC0B220E707C0094B159 /* PlayArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayArea.swift; sourceTree = "<group>"; };
+		6AF60A06222A0A9200194591 /* GridOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOrganizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,7 @@
 				6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */,
 				6A221ED8221F8C54003FD05A /* ShapeSequence.swift */,
 				6A26C15A2220F52300CD649D /* MemoryMeGame.swift */,
+				6AF60A06222A0A9200194591 /* GridOrganizer.swift */,
 			);
 			path = "Memory Me Shared";
 			sourceTree = "<group>";
@@ -375,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF60A07222A0A9200194591 /* GridOrganizer.swift in Sources */,
 				6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */,
 				6A9EAC0C220E707C0094B159 /* PlayArea.swift in Sources */,
 				6A26C15B2220F52300CD649D /* MemoryMeGame.swift in Sources */,
@@ -390,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF60A08222A0A9200194591 /* GridOrganizer.swift in Sources */,
 				6A9EAC0D220E707C0094B159 /* PlayArea.swift in Sources */,
 				6A002CAD21DF0410005B31F5 /* GameScene.swift in Sources */,
 				6A26C15C2220F52300CD649D /* MemoryMeGame.swift in Sources */,
