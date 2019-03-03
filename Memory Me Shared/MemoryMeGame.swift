@@ -23,12 +23,15 @@ class MemoryMeGame
     
     private var MemorySequence: ShapeSequence?;
     private var Area: PlayArea?;
+    private var Organizer: GridOrganizer;
     
     init(_ scene: SKScene, _ startingSize: CGRect)
     {
         self.Scene = scene;
         
-        self.Area = PlayArea(area: startingSize, scene: self.Scene)
+        self.Area = PlayArea(area: startingSize, scene: self.Scene);
+        
+        self.Organizer = GridOrganizer(areaSize: startingSize);
         
         assetsAreLoaded = false;
     }
@@ -57,8 +60,30 @@ class MemoryMeGame
             return;
         }
         
+        self.RecreateDebugRects();
+        
         self.MemorySequence = ShapeSequence(withStartingShapeCount: 1);
-        self.Area?.addShape(fromListOfShapes: (self.MemorySequence?.GetSequenceShapes())!);
+        //self.Area?.addShape(fromListOfShapes: (self.MemorySequence?.GetSequenceShapes())!);
+    }
+    
+    func RecreateDebugRects()
+    {
+        for node in Scene.children
+        {
+            if node is SKShapeNode
+            {
+                node.removeFromParent();
+            }
+        }
+        
+        for slot in self.Organizer.gridPositions
+        {
+            let debugSquare = SKShapeNode(rect: slot.area);
+            debugSquare.fillColor = NSColor.red;
+            debugSquare.strokeColor = NSColor.black;
+            
+            Scene.addChild(debugSquare);
+        }
     }
     
     /**
@@ -74,7 +99,7 @@ class MemoryMeGame
     {
         if(self.MemorySequence!.IsFinished())
         {
-            self.Area!.clear();
+            //self.Area!.clear();
             self.MemorySequence!.EvolveSequence();
             self.MemorySequence!.RestartSequence();
             
@@ -83,7 +108,7 @@ class MemoryMeGame
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
             // Restart
-            self.Area!.clear();
+            //self.Area!.clear();
             self.MemorySequence!.RestartSequence();
             
             self.Area!.addShape(fromListOfShapes: self.MemorySequence!.GetSequenceShapes());
@@ -92,7 +117,7 @@ class MemoryMeGame
     
     func Update()
     {
-        self.Area!.updateShapes();
+        //self.Area!.updateShapes();
     }
     
     func ProcessClick(at point: CGPoint)
@@ -109,6 +134,8 @@ class MemoryMeGame
     
     func ResizeGame(withFrame frame: CGRect)
     {
-        self.Area?.resetSize(frame);
+        //self.Area?.resetSize(frame);
+        self.Organizer.resizeGrid(withFrame: frame);
+        self.RecreateDebugRects();
     }
 }

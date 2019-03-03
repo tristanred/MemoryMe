@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-enum AreaType
+enum AreaShape
 {
     case Wide;
     case Square;
@@ -32,9 +32,11 @@ class GridSlot
     }
 }
 
+let ratio: CGFloat = 1.2;
+
 class GridOrganizer
 {
-    var areaType: AreaType;
+    var areaType: AreaShape;
     
     var areaSize: CGRect;
     
@@ -44,7 +46,7 @@ class GridOrganizer
     
     let keepAvailableFactor: CGFloat = 0.35; // Percentage of slots to keep free
     
-    private var gridPositions: [GridSlot];
+    var gridPositions: [GridSlot];
     
     init(areaSize: CGRect)
     {
@@ -55,12 +57,20 @@ class GridOrganizer
          Figure out if we are in a portrait/landscape device or something
          more square.
          */
-        if(areaSize.getSizeRatio() > 1.6)
+        if(areaSize.getSizeRatio() > ratio)
         {
             areaType = .Wide;
             
-            gridColumns = 2;
-            gridRows = 3;
+            if(areaSize.height > areaSize.width)
+            {
+                gridColumns = 2;
+                gridRows = 3;
+            }
+            else
+            {
+                gridColumns = 3;
+                gridRows = 2;
+            }
         }
         else
         {
@@ -74,6 +84,49 @@ class GridOrganizer
             .map({ (rect) -> GridSlot in
                 return GridSlot(gridArea: rect);
             });
+    }
+    
+    func resizeGrid(withFrame frame: CGRect)
+    {
+        if  self.areaType == .Square && frame.getSizeRatio() > ratio ||
+            self.areaType == .Wide && frame.getSizeRatio() <= ratio
+        {
+            self.shapeSizeChanged();
+        }
+        
+        self.areaSize = frame;
+        
+        self.gridPositions = SplitRectangle(columns: gridColumns, rows: gridRows, area: areaSize)
+            .map({ (rect) -> GridSlot in
+                return GridSlot(gridArea: rect);
+        });
+    }
+    
+    func shapeSizeChanged()
+    {
+        if(self.areaSize.getSizeRatio() > ratio)
+        {
+            self.areaType = .Wide;
+            
+            if(areaSize.height > self.areaSize.width)
+            {
+                gridColumns = 2;
+                gridRows = 3;
+            }
+            else
+            {
+                gridColumns = 3;
+                gridRows = 2;
+            }
+        }
+        else
+        {
+            self.areaType = .Square;
+            
+            gridColumns = 3;
+            gridRows = 3;
+        }
+
     }
     
     /**

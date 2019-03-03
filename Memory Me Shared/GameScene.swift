@@ -68,7 +68,8 @@ class GameScene: SKScene
         self.scaleFactorX = self.size.width / self.initialWidth;
         self.scaleFactorY = self.size.height / self.initialHeight;
         
-        print("Current scale factor : x = \(self.scaleFactorX), y = \(self.scaleFactorY)");
+        print("Current Ratio is  \(self.size.height / self.size.width)");
+        //print("Current scale factor : x = \(self.scaleFactorX), y = \(self.scaleFactorY)");
     }
     
     override func update(_ currentTime: TimeInterval)

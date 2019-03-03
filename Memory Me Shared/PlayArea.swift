@@ -9,6 +9,11 @@
 import Foundation
 import SpriteKit
 
+/**
+ The PlayArea class is doing the handling of the shapes and their movements.
+ All shapes added to the area is given a velocity and moved by this class. When
+ a touch hits a point with a Shape that shape is taken out of the area.
+ */
 class PlayArea
 {
     private let Scene: SKScene;
