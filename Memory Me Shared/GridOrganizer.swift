@@ -34,6 +34,33 @@ class GridSlot
 
 let ratio: CGFloat = 1.2;
 
+
+/*
+ Example Grid API
+ 
+ - The grid does not touch the Scene object
+ - Function to return the centerpoint of each cell
+ 
+ let frame = 500x500
+ let grid = GridOrganizer(frame);
+ 
+ grid.addShape(square);
+ grid.addShape(circle);
+ 
+ grid.shuffle(); <-- Shuffle existing shapes
+ 
+ grid.clear(); <--- Clear all shape data.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+
+
+
 class GridOrganizer
 {
     var areaType: AreaShape;
@@ -87,6 +114,79 @@ class GridOrganizer
     }
     
     /**
+     Add a shape to a cell on the grid. Returns the cell that the shape was
+     added to. Returns nil if the grid is full and the cell could not be added.
+    */
+    func addShape(shape: GameShape) -> GridSlot?
+    {
+        // Find a free cell and attach the shape to it
+        for cell in self.gridPositions
+        {
+            if(cell.shapeOnSlot == nil)
+            {
+                cell.shapeOnSlot = shape;
+                
+                return cell;
+            }
+        }
+        
+        // Return nil if no free cells were found.
+        return nil;
+    }
+    
+    /**
+     Shuffle the attached shapes inside the grid's positions
+    */
+    func shuffleShapes()
+    {
+        // Grab all shapes currently on the screen before we reset
+        let currentShapes: [GameShape] = self.gridPositions.filter { (slot) -> Bool in
+                return slot.shapeOnSlot != nil;
+            }.map { (slot) -> GameShape in
+                slot.shapeOnSlot!;
+            }
+        
+        // Reset the positions
+        self.gridPositions.forEach { (slot) in
+            slot.shapeOnSlot = nil;
+        };
+        
+        // Set all the shapes on random positions
+        let randomGridOrder = self.gridPositions.shuffled();
+        
+        for shape in currentShapes.enumerated()
+        {
+            randomGridOrder[shape.offset].shapeOnSlot = shape.element;
+        }
+        
+        self.gridPositions = randomGridOrder;
+    }
+    
+    /**
+     Get the center position of each cell in the grid.
+    */
+    func getCellPositions() -> [CGPoint]
+    {
+        return self.gridPositions.map({ (slot) -> CGPoint in
+            return CGPoint(x: slot.area.midX, y: slot.area.midY);
+        });
+    }
+    
+    /*
+     Set the position of each shape inside their assigned grid cell.
+    */
+    func resetShapePositions()
+    {
+        for slot in self.gridPositions
+        {
+            slot.shapeOnSlot?.position = CGPoint(x: slot.area.midX, y: slot.area.midY);
+        }
+    }
+    
+    
+    // --------------------------- OLD API BELOW ------------------------------
+    
+    /**
      Returns if the grid needs to grow additional rows/columns to accomodate
      more slots.
     */
@@ -117,7 +217,7 @@ class GridOrganizer
     }
     
     /**
-     Called when the scene is resized.
+     
     */
     func shapeSizeChanged()
     {
@@ -156,25 +256,7 @@ class GridOrganizer
     }
     
     /**
-     Insert a shape at a random available position. Returns the slot that was
-     used if the insert was possible.
-    */
-    func placeShapeAtRandomPosition(shape: GameShape) -> GridSlot?
-    {
-        let freePosition = gridPositions.filter({(rect) -> Bool in
-            return rect.isOccupied() == false;
-        }).randomElement();
-        
-        freePosition?.shapeOnSlot = shape;
-        
-        shape.position.x = freePosition!.area.midX;
-        shape.position.y = freePosition!.area.midY;
-        
-        return freePosition;
-    }
-    
-    /**
-     Get the amount of slots to keep free given the currentr grid size.
+     Get the amount of slots to keep free given the current grid size.
      For example, on a 6 slots grid (2x3) we should keep 2 slots free.
     */
     func getSlotsToKeepFreeCount() -> Int

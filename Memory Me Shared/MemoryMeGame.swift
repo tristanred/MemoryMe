@@ -67,9 +67,17 @@ class MemoryMeGame
         let initialSequence = self.MemorySequence?.GetSequenceShapes();
         for shape in initialSequence!
         {
-            let result = self.Organizer.placeShapeAtRandomPosition(shape: shape);
-            self.Scene.addChild(shape);
+            if let res = self.Organizer.addShape(shape: shape)
+            {
+                self.Scene.addChild(shape);
+            }
+            else
+            {
+                print("Unable to add shape because of reasons.");
+            }
         }
+        self.Organizer.shuffleShapes();
+        self.Organizer.resetShapePositions();
     }
     
     func RecreateDebugRects()
@@ -85,8 +93,12 @@ class MemoryMeGame
         for slot in self.Organizer.gridPositions
         {
             let debugSquare = SKShapeNode(rect: slot.area);
-            //debugSquare.fillColor = NSColor.red;
+            
+            #if os(OSX)
             debugSquare.strokeColor = NSColor.red;
+            #elseif os(iOS)
+            debugSquare.strokeColor = UIColor.red;
+            #endif
 
             Scene.addChild(debugSquare);
         }
@@ -105,6 +117,9 @@ class MemoryMeGame
     {
         if(self.MemorySequence!.IsFinished())
         {
+            // Sequence is finished. Add a shape to the sequence, shuffle the
+            // positions and add the shapes back to the Scene.
+            
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {
@@ -116,13 +131,21 @@ class MemoryMeGame
             
             for shape in self.MemorySequence!.GetSequenceShapes()
             {
-                self.Organizer.placeShapeAtRandomPosition(shape: shape);
-                self.Scene.addChild(shape);
+                if let res = self.Organizer.addShape(shape: shape)
+                {
+                    Scene.addChild(res.shapeOnSlot!);
+                }
+                else
+                {
+                    print("Unable to add shape because of reasons.");
+                }
             }
+            
+            self.Organizer.shuffleShapes();
+            self.Organizer.resetShapePositions();
         }
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
-            // Restart
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {
@@ -131,12 +154,20 @@ class MemoryMeGame
             
             self.MemorySequence!.RestartSequence();
             
-            // TODO : Reset and add shapes back
             for shape in self.MemorySequence!.GetSequenceShapes()
             {
-                self.Organizer.placeShapeAtRandomPosition(shape: shape);
-                self.Scene.addChild(shape);
+                if let res = self.Organizer.addShape(shape: shape)
+                {
+                    Scene.addChild(res.shapeOnSlot!);
+                }
+                else
+                {
+                    print("Unable to add shape because of reasons.");
+                }
             }
+            
+            self.Organizer.shuffleShapes();
+            self.Organizer.resetShapePositions();
         }
     }
     
