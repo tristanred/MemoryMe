@@ -86,6 +86,20 @@ class GridOrganizer
             });
     }
     
+    /**
+     Returns if the grid needs to grow additional rows/columns to accomodate
+     more slots.
+    */
+    func gridMustGrow() -> Bool
+    {
+        let freeSlots = self.getAvailablePositionsCount();
+        
+        return CGFloat(gridPositions.count / freeSlots) <= keepAvailableFactor;
+    }
+    
+    /**
+     Resize the grid to contain a new frame.
+    */
     func resizeGrid(withFrame frame: CGRect)
     {
         if  self.areaType == .Square && frame.getSizeRatio() > ratio ||
@@ -102,6 +116,9 @@ class GridOrganizer
         });
     }
     
+    /**
+     Called when the scene is resized.
+    */
     func shapeSizeChanged()
     {
         if(self.areaSize.getSizeRatio() > ratio)
@@ -126,7 +143,6 @@ class GridOrganizer
             gridColumns = 3;
             gridRows = 3;
         }
-
     }
     
     /**
