@@ -63,7 +63,13 @@ class MemoryMeGame
         self.RecreateDebugRects();
         
         self.MemorySequence = ShapeSequence(withStartingShapeCount: 1);
-        //self.Area?.addShape(fromListOfShapes: (self.MemorySequence?.GetSequenceShapes())!);
+        
+        let initialSequence = self.MemorySequence?.GetSequenceShapes();
+        for shape in initialSequence!
+        {
+            let result = self.Organizer.placeShapeAtRandomPosition(shape: shape);
+            self.Scene.addChild(shape);
+        }
     }
     
     func RecreateDebugRects()
@@ -75,13 +81,13 @@ class MemoryMeGame
                 node.removeFromParent();
             }
         }
-        
+
         for slot in self.Organizer.gridPositions
         {
             let debugSquare = SKShapeNode(rect: slot.area);
-            debugSquare.fillColor = NSColor.red;
-            debugSquare.strokeColor = NSColor.black;
-            
+            //debugSquare.fillColor = NSColor.red;
+            debugSquare.strokeColor = NSColor.red;
+
             Scene.addChild(debugSquare);
         }
     }
@@ -99,42 +105,51 @@ class MemoryMeGame
     {
         if(self.MemorySequence!.IsFinished())
         {
-            //self.Area!.clear();
+            self.Organizer.clear();
             self.MemorySequence!.EvolveSequence();
             self.MemorySequence!.RestartSequence();
             
-            self.Area!.addShape(fromListOfShapes: self.MemorySequence!.GetSequenceShapes());
+            for shape in self.MemorySequence!.GetSequenceShapes()
+            {
+                self.Organizer.placeShapeAtRandomPosition(shape: shape);
+                self.Scene.addChild(shape);
+            }
         }
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
             // Restart
-            //self.Area!.clear();
+            self.Organizer.clear();
             self.MemorySequence!.RestartSequence();
             
-            self.Area!.addShape(fromListOfShapes: self.MemorySequence!.GetSequenceShapes());
+            // TODO : Reset and add shapes back
+            for shape in self.MemorySequence!.GetSequenceShapes()
+            {
+                self.Organizer.placeShapeAtRandomPosition(shape: shape);
+                self.Scene.addChild(shape);
+            }
         }
     }
     
     func Update()
     {
-        //self.Area!.updateShapes();
     }
     
     func ProcessClick(at point: CGPoint)
     {
-        let result = self.Area?.processTouch(at: point);
+        let result = self.Organizer.gridPositions.first { (slot) -> Bool in
+            return slot.shapeOnSlot?.contains(point) ?? false;
+        };
         
-        if(result != ShapesKind.NONE)
+        if let touchedSlot = result
         {
-            self.MemorySequence?.ShapeClicked(kind: result!);
-            
+            touchedSlot.shapeOnSlot?.removeFromParent();
+            self.MemorySequence?.ShapeClicked(kind: touchedSlot.shapeOnSlot!.ShapeKind);
             self.VerifyGameStatus();
         }
     }
     
     func ResizeGame(withFrame frame: CGRect)
     {
-        //self.Area?.resetSize(frame);
         self.Organizer.resizeGrid(withFrame: frame);
         self.RecreateDebugRects();
     }

@@ -151,6 +151,9 @@ class GridOrganizer
         
         freePosition?.shapeOnSlot = shape;
         
+        shape.position.x = freePosition!.area.midX;
+        shape.position.y = freePosition!.area.midY;
+        
         return freePosition;
     }
     
@@ -171,6 +174,16 @@ class GridOrganizer
         return gridPositions.first(where: {(rect) -> Bool in
             return rect.shapeOnSlot === shape;
         });
+    }
+    
+    func clear()
+    {
+        for pos in gridPositions
+        {
+            // TODO : Handling scene, should be do that here
+            pos.shapeOnSlot?.removeFromParent();
+            pos.shapeOnSlot = nil;
+        }
     }
 }
 
