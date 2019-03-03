@@ -105,7 +105,12 @@ class MemoryMeGame
     {
         if(self.MemorySequence!.IsFinished())
         {
-            self.Organizer.clear();
+            let clearedShapes = self.Organizer.clear();
+            for shape in clearedShapes
+            {
+                shape.removeFromParent();
+            }
+            
             self.MemorySequence!.EvolveSequence();
             self.MemorySequence!.RestartSequence();
             
@@ -118,7 +123,12 @@ class MemoryMeGame
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
             // Restart
-            self.Organizer.clear();
+            let clearedShapes = self.Organizer.clear();
+            for shape in clearedShapes
+            {
+                shape.removeFromParent();
+            }
+            
             self.MemorySequence!.RestartSequence();
             
             // TODO : Reset and add shapes back

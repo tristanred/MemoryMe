@@ -176,14 +176,25 @@ class GridOrganizer
         });
     }
     
-    func clear()
+    /**
+     Clear all shapes from the grid and return the instances that were removed
+     so the caller can choose to remove them.
+    */
+    func clear() -> [GameShape]
     {
+        let currentShapes = gridPositions
+            .filter { (slot) -> Bool in
+                return slot.isOccupied();
+            }.map { (slot) -> GameShape in
+                slot.shapeOnSlot!;
+            };
+        
         for pos in gridPositions
         {
-            // TODO : Handling scene, should be do that here
-            pos.shapeOnSlot?.removeFromParent();
             pos.shapeOnSlot = nil;
         }
+        
+        return currentShapes;
     }
 }
 
