@@ -22,16 +22,21 @@ class MemoryMeGame
     private var assetsAreLoaded: Bool;
     
     private var MemorySequence: ShapeSequence?;
-    private var Area: PlayArea?;
     private var Organizer: GridOrganizer;
+    
+    private var initialSize: CGRect;
+    
+    private var cellWidth: CGFloat;
+    private var cellHeigth: CGFloat;
     
     init(_ scene: SKScene, _ startingSize: CGRect)
     {
         self.Scene = scene;
-        
-        self.Area = PlayArea(area: startingSize, scene: self.Scene);
-        
+                
         self.Organizer = GridOrganizer(areaSize: startingSize);
+        initialSize = startingSize;
+        cellWidth = initialSize.width / CGFloat(self.Organizer.gridColumns);
+        cellHeigth = initialSize.height / CGFloat(self.Organizer.gridRows);
         
         assetsAreLoaded = false;
     }
@@ -129,6 +134,14 @@ class MemoryMeGame
             self.MemorySequence!.EvolveSequence();
             self.MemorySequence!.RestartSequence();
             
+            if(self.Organizer.gridMustGrow(amount: self.MemorySequence!.GetSequenceShapes().count))
+            {
+                self.Organizer.growGrid();
+                self.Scene.size.width += self.cellWidth;
+                self.Scene.size.height += self.cellHeigth;
+                self.ResizeGame(withFrame: CGRect(x: 0, y: 0, width: self.Scene.size.width, height: self.Scene.size.height));
+            }
+            
             for shape in self.MemorySequence!.GetSequenceShapes()
             {
                 if let res = self.Organizer.addShape(shape: shape)
@@ -146,6 +159,7 @@ class MemoryMeGame
         }
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
+            return;
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {

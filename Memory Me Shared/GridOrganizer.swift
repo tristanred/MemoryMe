@@ -183,18 +183,24 @@ class GridOrganizer
         }
     }
     
-    
     // --------------------------- OLD API BELOW ------------------------------
     
     /**
      Returns if the grid needs to grow additional rows/columns to accomodate
      more slots.
     */
-    func gridMustGrow() -> Bool
+    func gridMustGrow(amount: Int) -> Bool
     {
-        let freeSlots = self.getAvailablePositionsCount();
+        let amount = CGFloat(amount);
+        let count = CGFloat(gridPositions.count);
         
-        return CGFloat(gridPositions.count / freeSlots) <= keepAvailableFactor;
+        return CGFloat(amount / count) >= 0.75;// keepAvailableFactor;
+    }
+    
+    func growGrid()
+    {
+        self.gridColumns += 1;
+        self.gridRows += 1;
     }
     
     /**
@@ -205,7 +211,7 @@ class GridOrganizer
         if  self.areaType == .Square && frame.getSizeRatio() > ratio ||
             self.areaType == .Wide && frame.getSizeRatio() <= ratio
         {
-            self.shapeSizeChanged();
+            //self.shapeSizeChanged();
         }
         
         self.areaSize = frame;
