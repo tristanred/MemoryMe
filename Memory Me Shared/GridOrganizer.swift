@@ -32,7 +32,7 @@ class GridSlot
     }
 }
 
-let ratio: CGFloat = 1.2;
+let ratio: CGFloat = 1.0;
 
 
 /*
@@ -50,16 +50,7 @@ let ratio: CGFloat = 1.2;
  grid.shuffle(); <-- Shuffle existing shapes
  
  grid.clear(); <--- Clear all shape data.
- 
- 
- 
- 
- 
- 
- 
  */
-
-
 
 class GridOrganizer
 {
@@ -206,20 +197,33 @@ class GridOrganizer
     /**
      Resize the grid to contain a new frame.
     */
-    func resizeGrid(withFrame frame: CGRect)
+    func onResize(withFrame frame: CGRect)
     {
         if  self.areaType == .Square && frame.getSizeRatio() > ratio ||
             self.areaType == .Wide && frame.getSizeRatio() <= ratio
         {
-            //self.shapeSizeChanged();
+            self.shapeSizeChanged();
         }
         
         self.areaSize = frame;
         
-        self.gridPositions = SplitRectangle(columns: gridColumns, rows: gridRows, area: areaSize)
+        // Create the new grid partitions
+        let newGridPositions = SplitRectangle(columns: gridColumns, rows: gridRows, area: areaSize)
             .map({ (rect) -> GridSlot in
                 return GridSlot(gridArea: rect);
-        });
+            });
+        
+        // Transfer all shapes of the old grid to the new grid at the same index
+        // Both the new and the old grid are assumed to have the same amount of
+        // slots.
+        for currentSlot in self.gridPositions.enumerated()
+        {
+            newGridPositions[currentSlot.offset].shapeOnSlot = currentSlot.element.shapeOnSlot;
+        }
+        
+        self.gridPositions = newGridPositions;
+        
+        self.resetShapePositions();
     }
     
     /**
@@ -229,25 +233,30 @@ class GridOrganizer
     {
         if(self.areaSize.getSizeRatio() > ratio)
         {
-            self.areaType = .Wide;
+            // In this case, we are going into a Widescreen ratio
             
-            if(areaSize.height > self.areaSize.width)
+            // Check if we are currently in Square ratio so, indicating a
+            // change of shape from Square to Wide
+            if(self.areaType == .Square)
             {
-                gridColumns = 2;
-                gridRows = 3;
+                swap(&gridColumns, &gridRows);
             }
-            else
-            {
-                gridColumns = 3;
-                gridRows = 2;
-            }
+            
+            self.areaType = .Wide;
         }
         else
         {
-            self.areaType = .Square;
+            // In this case, we are going into a Square screen ration
             
-            gridColumns = 3;
-            gridRows = 3;
+            // Check we we are in Widescreen, indicating a switch from
+            // Widescreen to Square
+            
+            if(self.areaType == .Wide)
+            {
+                swap(&gridRows, &gridColumns);
+            }
+            
+            self.areaType = .Square;
         }
     }
     
@@ -369,13 +378,6 @@ extension CGRect
 {
     func getSizeRatio() -> CGFloat
     {
-        if(self.height > self.width)
-        {
-            return self.height / self.width;
-        }
-        else
-        {
-            return self.width / self.height;
-        }
+        return self.width / self.height;
     }
 }

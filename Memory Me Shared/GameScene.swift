@@ -68,7 +68,8 @@ class GameScene: SKScene
         self.scaleFactorX = self.size.width / self.initialWidth;
         self.scaleFactorY = self.size.height / self.initialHeight;
         
-        print("Current Ratio is  \(self.size.height / self.size.width)");
+        print("Resolution is \(Int(self.size.width))x\(Int(self.size.height))");
+        print("Current Ratio is  \(self.frame.getSizeRatio())");
         //print("Current scale factor : x = \(self.scaleFactorX), y = \(self.scaleFactorY)");
     }
     

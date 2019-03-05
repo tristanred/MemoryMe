@@ -205,7 +205,7 @@ class MemoryMeGame
     
     func ResizeGame(withFrame frame: CGRect)
     {
-        self.Organizer.resizeGrid(withFrame: frame);
+        self.Organizer.onResize(withFrame: frame);
         self.RecreateDebugRects();
     }
 }
