@@ -85,6 +85,14 @@ class MemoryMeGame
         self.Organizer.resetShapePositions();
     }
     
+    func debugKeyPressed()
+    {
+        for slot in self.Organizer.gridPositions.enumerated()
+        {
+            print("Slot [\(slot.offset)] with shape : \(slot.element.shapeOnSlot)");
+        }
+    }
+    
     func RecreateDebugRects()
     {
         for node in Scene.children
@@ -159,7 +167,6 @@ class MemoryMeGame
         }
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
-            return;
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {

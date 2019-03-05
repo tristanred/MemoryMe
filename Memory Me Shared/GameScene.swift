@@ -63,6 +63,16 @@ class GameScene: SKScene
         self.PrintScaleFactor();
     }
     
+    #if os(OSX)
+    override func keyUp(with event: NSEvent)
+    {
+        if(event.keyCode == 49)
+        {
+            self.Game?.debugKeyPressed();
+        }
+    }
+    #endif
+    
     func PrintScaleFactor()
     {
         self.scaleFactorX = self.size.width / self.initialWidth;

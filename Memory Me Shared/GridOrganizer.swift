@@ -62,7 +62,7 @@ class GridOrganizer
     var gridColumns: Int;
     var gridRows: Int;
     
-    let keepAvailableFactor: CGFloat = 0.35; // Percentage of slots to keep free
+    let keepAvailableFactor: CGFloat = 0.75;
     
     var gridPositions: [GridSlot];
     
@@ -135,7 +135,7 @@ class GridOrganizer
                 return slot.shapeOnSlot != nil;
             }.map { (slot) -> GameShape in
                 slot.shapeOnSlot!;
-            }
+        };
         
         // Reset the positions
         self.gridPositions.forEach { (slot) in
@@ -179,13 +179,15 @@ class GridOrganizer
     /**
      Returns if the grid needs to grow additional rows/columns to accomodate
      more slots.
+     
+     Returns true if more than 75% of the grid will be filled by the given count
     */
     func gridMustGrow(amount: Int) -> Bool
     {
         let amount = CGFloat(amount);
         let count = CGFloat(gridPositions.count);
         
-        return CGFloat(amount / count) >= 0.75;// keepAvailableFactor;
+        return CGFloat(amount / count) >= keepAvailableFactor;
     }
     
     func growGrid()
