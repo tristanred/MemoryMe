@@ -39,9 +39,7 @@ class GameScene: SKScene
     
     func setUpScene()
     {
-        let myFrame = self.scene!.view!.frame;
-
-        self.Game = MemoryMeGame(self, myFrame);
+        self.Game = MemoryMeGame(self, GetViewFrame());
         
         self.Game?.LoadTextures();
         self.Game?.StartNewGame();
@@ -54,12 +52,7 @@ class GameScene: SKScene
     
     override func didChangeSize(_ oldSize: CGSize)
     {
-        let myFrame = self.scene?.view?.frame;
-        if(myFrame != nil)
-        {
-            self.Game?.ResizeGame(withFrame: myFrame!);
-        }
-        
+        self.Game?.ResizeGame(withFrame: self.GetViewFrame());
         self.PrintScaleFactor();
     }
     
@@ -72,6 +65,16 @@ class GameScene: SKScene
         }
     }
     #endif
+    
+    /**
+     * Get a rectangle corresponding to the size of the view.
+     *
+     * Returns a Zero rectangle if the view frame does not exist.
+     */
+    func GetViewFrame() -> CGRect
+    {
+        return self.scene?.view?.frame ?? CGRect.zero;
+    }
     
     func PrintScaleFactor()
     {
