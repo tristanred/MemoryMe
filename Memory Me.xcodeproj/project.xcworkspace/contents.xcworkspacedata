@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Memory Me.xcodeproj">
+      location = "group:../promises/Promises.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

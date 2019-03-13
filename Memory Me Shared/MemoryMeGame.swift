@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import Promises;
 
 /**
  MemoryMe Game Core class.
