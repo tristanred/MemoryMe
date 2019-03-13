@@ -68,6 +68,8 @@
 		6A26C1592220E9C700CD649D /* Circle_x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A26C1312220E9C700CD649D /* Circle_x256.png */; };
 		6A26C15B2220F52300CD649D /* MemoryMeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A26C15A2220F52300CD649D /* MemoryMeGame.swift */; };
 		6A26C15C2220F52300CD649D /* MemoryMeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A26C15A2220F52300CD649D /* MemoryMeGame.swift */; };
+		6A27631F2239AB4700A3F6AF /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A27631E2239AB4600A3F6AF /* LaunchScreen.png */; };
+		6A2763202239AB4700A3F6AF /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A27631E2239AB4600A3F6AF /* LaunchScreen.png */; };
 		6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6AF39622220E7EC00073B207 /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6AF60A07222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
@@ -113,6 +115,7 @@
 		6A26C1302220E9C700CD649D /* Square_x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Square_x1024.png; sourceTree = "<group>"; };
 		6A26C1312220E9C700CD649D /* Circle_x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circle_x256.png; sourceTree = "<group>"; };
 		6A26C15A2220F52300CD649D /* MemoryMeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMeGame.swift; sourceTree = "<group>"; };
+		6A27631E2239AB4600A3F6AF /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
 		6AF60A06222A0A9200194591 /* GridOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOrganizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,7 +145,6 @@
 				6A002C8E21DF0410005B31F5 /* Memory Me iOS */,
 				6A002C9F21DF0410005B31F5 /* Memory Me macOS */,
 				6A002C8D21DF0410005B31F5 /* Products */,
-				6AF0EC8A22389C1E00F47087 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +208,7 @@
 		6A3751C721E821C10070FF5C /* GameAssets */ = {
 			isa = PBXGroup;
 			children = (
+				6A27631E2239AB4600A3F6AF /* LaunchScreen.png */,
 				6A26C12E2220E9C700CD649D /* Circle_x64.png */,
 				6A26C11F2220E9C700CD649D /* Circle_x128.png */,
 				6A26C1312220E9C700CD649D /* Circle_x256.png */,
@@ -230,13 +233,6 @@
 			name = GameAssets;
 			path = "Memory Me Shared/GameAssets";
 			sourceTree = SOURCE_ROOT;
-		};
-		6AF0EC8A22389C1E00F47087 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -323,6 +319,7 @@
 				6A26C1522220E9C700CD649D /* Circle_x64.png in Resources */,
 				6A26C1382220E9C700CD649D /* Diamond_x64.png in Resources */,
 				6A26C1482220E9C700CD649D /* Diamond_x128.png in Resources */,
+				6A27631F2239AB4700A3F6AF /* LaunchScreen.png in Resources */,
 				6A002CAA21DF0410005B31F5 /* GameScene.sks in Resources */,
 				6A26C1422220E9C700CD649D /* Circle_x512.png in Resources */,
 				6A26C1342220E9C700CD649D /* Circle_x128.png in Resources */,
@@ -360,6 +357,7 @@
 				6A26C1372220E9C700CD649D /* Diamond_x256.png in Resources */,
 				6A26C1472220E9C700CD649D /* Triangle_x64.png in Resources */,
 				6A26C1432220E9C700CD649D /* Circle_x512.png in Resources */,
+				6A2763202239AB4700A3F6AF /* LaunchScreen.png in Resources */,
 				6A26C13B2220E9C700CD649D /* Diamond_x512.png in Resources */,
 				6A26C14D2220E9C700CD649D /* Circle_x1024.png in Resources */,
 				6A002CAB21DF0410005B31F5 /* GameScene.sks in Resources */,
