@@ -31,4 +31,16 @@ class GameShape : SKSpriteNode
         
         return sprite;
     }
+    
+    func doClickAnimation(whenComplete: @escaping () -> Void)
+    {
+        self.run(SKAction.scale(by: 0, duration: 0.1), completion: whenComplete);
+    }
+    
+    func resetShape()
+    {
+        self.xScale = 1;
+        self.yScale = 1;
+        
+    }
 }

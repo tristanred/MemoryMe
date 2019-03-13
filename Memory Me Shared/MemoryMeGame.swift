@@ -30,6 +30,12 @@ class MemoryMeGame
     private var cellWidth: CGFloat;
     private var cellHeigth: CGFloat;
     
+    /**
+     * Flag used to prevent clicking multiple shape touches, this helps
+     * concurrency callbacks when shapes finish their animation.
+     */
+    private var preventInteraction: Bool = false;
+    
     init(_ scene: SKScene, _ startingSize: CGRect)
     {
         self.Scene = scene;
@@ -137,6 +143,7 @@ class MemoryMeGame
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {
+                shape.resetShape();
                 shape.removeFromParent();
             }
             
@@ -171,6 +178,7 @@ class MemoryMeGame
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {
+                shape.resetShape();
                 shape.removeFromParent();
             }
             
@@ -199,15 +207,33 @@ class MemoryMeGame
     
     func ProcessClick(at point: CGPoint)
     {
+        if (preventInteraction == true)
+        {
+            return;
+        }
+        
         let result = self.Organizer.gridPositions.first { (slot) -> Bool in
             return slot.shapeOnSlot?.contains(point) ?? false;
         };
         
         if let touchedSlot = result
         {
-            touchedSlot.shapeOnSlot?.removeFromParent();
-            self.MemorySequence?.ShapeClicked(kind: touchedSlot.shapeOnSlot!.ShapeKind);
-            self.VerifyGameStatus();
+            if let slot = touchedSlot.shapeOnSlot
+            {
+                preventInteraction = true;
+                
+                slot.doClickAnimation(){
+                    touchedSlot.shapeOnSlot?.removeFromParent();
+                    self.MemorySequence?.ShapeClicked(kind: touchedSlot.shapeOnSlot!.ShapeKind);
+                    self.VerifyGameStatus();
+                    
+                    self.preventInteraction = false;
+                }
+            }
+            
+//            touchedSlot.shapeOnSlot?.removeFromParent();
+//            self.MemorySequence?.ShapeClicked(kind: touchedSlot.shapeOnSlot!.ShapeKind);
+//            self.VerifyGameStatus();
         }
     }
     
