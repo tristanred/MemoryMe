@@ -14,8 +14,8 @@ class GameScene: SKScene
     var initialWidth: CGFloat = 0;
     var initialHeight: CGFloat = 0;
     
-    var scaleFactorX: CGFloat = 0;
-    var scaleFactorY: CGFloat = 0;
+    var labelWidthValue: SKLabelNode?;
+    var labelHeightValue: SKLabelNode?;
     
     var Game: MemoryMeGame?;
     
@@ -29,6 +29,9 @@ class GameScene: SKScene
         
         scene.initialWidth = scene.size.width;
         scene.initialHeight = scene.size.height;
+        
+        scene.labelWidthValue = scene.childNode(withName: "//WidthValue") as? SKLabelNode;
+        scene.labelHeightValue = scene.childNode(withName: "//HeightValue") as? SKLabelNode;
         
         // Set the scale mode to scale to fit the window
         //scene.scaleMode = .aspectFill;
@@ -53,7 +56,7 @@ class GameScene: SKScene
     override func didChangeSize(_ oldSize: CGSize)
     {
         self.Game?.ResizeGame(withFrame: self.GetViewFrame());
-        self.PrintScaleFactor();
+        self.UpdateDebugInfo();
     }
     
     #if os(OSX)
@@ -73,17 +76,16 @@ class GameScene: SKScene
      */
     func GetViewFrame() -> CGRect
     {
-        return self.scene?.view?.frame ?? CGRect.zero;
+        var r = CGRect(origin: CGPoint(x: 0, y: 0), size: self.size);
+        r = r.insetBy(dx: 0, dy: 20);
+        
+        return r;
     }
     
-    func PrintScaleFactor()
+    func UpdateDebugInfo()
     {
-        self.scaleFactorX = self.size.width / self.initialWidth;
-        self.scaleFactorY = self.size.height / self.initialHeight;
-        
-        print("Resolution is \(Int(self.size.width))x\(Int(self.size.height))");
-        print("Current Ratio is  \(self.frame.getSizeRatio())");
-        //print("Current scale factor : x = \(self.scaleFactorX), y = \(self.scaleFactorY)");
+        self.labelWidthValue?.text = "\(round(self.size.width))";
+        self.labelHeightValue?.text = "\(round(self.size.height))";
     }
     
     override func update(_ currentTime: TimeInterval)

@@ -229,10 +229,6 @@ class MemoryMeGame
                     self.preventInteraction = false;
                 }
             }
-            
-//            touchedSlot.shapeOnSlot?.removeFromParent();
-//            self.MemorySequence?.ShapeClicked(kind: touchedSlot.shapeOnSlot!.ShapeKind);
-//            self.VerifyGameStatus();
         }
     }
     
