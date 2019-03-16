@@ -27,7 +27,7 @@ class GameScene: SKScene
             abort();
         }
         
-        let scrSize = UIScreen.main.bounds.size;
+        let scrSize = getScreenSize();
         
         // Set the initial size depending on the device layout
         if(isTallScreen(width: scrSize.width, height: scrSize.height))
@@ -74,6 +74,40 @@ class GameScene: SKScene
     {
         self.Game?.ResizeGame(withFrame: self.GetViewFrame());
         self.UpdateDebugInfo();
+    }
+    
+    func changedOrientation(to size: CGSize)
+    {
+        if(isLandscapeSize(width: size.width, height: size.height))
+        {
+            if(isTallScreen(width: size.width, height: size.height))
+            {
+                // iPhone X Resolution
+                self.size.width = 2436;
+                self.size.height = 1125;
+            }
+            else
+            {
+                // iPad resolution
+                self.size.width = 2732 / 2;
+                self.size.height = 2048 / 2;
+            }
+        }
+        else
+        {
+            if(isTallScreen(width: size.width, height: size.height))
+            {
+                // iPhone X Resolution
+                self.size.width = 1125;
+                self.size.height = 2436;
+            }
+            else
+            {
+                // iPad resolution
+                self.size.width = 2048 / 2;
+                self.size.height = 2732 / 2;
+            }
+        }
     }
     
     #if os(OSX)
@@ -135,6 +169,25 @@ func isTallScreen(width: CGFloat, height: CGFloat) -> Bool
     return false;
 }
 
+func isLandscapeSize(width: CGFloat, height: CGFloat) -> Bool
+{
+    if(width > height)
+    {
+        return true;
+    }
+    
+    return false;
+}
+
+func getScreenSize() -> CGSize
+{
+    #if os(iOS)
+    return UIScreen.main.bounds.size;
+    #endif
+    #if os(OSX)
+    return CGSize(width: 500, height: 500);
+    #endif
+}
 
 #if os(iOS) || os(tvOS)
 // Touch-based event handling

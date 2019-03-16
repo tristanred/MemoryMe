@@ -12,10 +12,14 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    var loadedGameScene: GameScene?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene.newGameScene()
+        let scene = GameScene.newGameScene();
+        
+        loadedGameScene = scene;
 
         // Present the scene
         let skView = self.view as! SKView
@@ -28,6 +32,12 @@ class GameViewController: UIViewController {
 
     override var shouldAutorotate: Bool {
         return true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator);
+        
+        self.loadedGameScene?.changedOrientation(to: size);
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
