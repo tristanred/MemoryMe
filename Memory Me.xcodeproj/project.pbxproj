@@ -71,6 +71,8 @@
 		6A27631F2239AB4700A3F6AF /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A27631E2239AB4600A3F6AF /* LaunchScreen.png */; };
 		6A2763202239AB4700A3F6AF /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A27631E2239AB4600A3F6AF /* LaunchScreen.png */; };
 		6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
+		6AE796AF223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */; };
+		6AE796B0223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */; };
 		6AF39622220E7EC00073B207 /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6AF60A07222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
 		6AF60A08222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
@@ -117,6 +119,7 @@
 		6A26C15A2220F52300CD649D /* MemoryMeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMeGame.swift; sourceTree = "<group>"; };
 		6A27631E2239AB4600A3F6AF /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
+		6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShapeGraphics.xcassets; sourceTree = "<group>"; };
 		6AF60A06222A0A9200194591 /* GridOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOrganizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +164,7 @@
 				6A221ED8221F8C54003FD05A /* ShapeSequence.swift */,
 				6A26C15A2220F52300CD649D /* MemoryMeGame.swift */,
 				6AF60A06222A0A9200194591 /* GridOrganizer.swift */,
+				6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */,
 			);
 			path = "Memory Me Shared";
 			sourceTree = "<group>";
@@ -313,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AE796AF223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */,
 				6A26C1502220E9C700CD649D /* Square_x128.png in Resources */,
 				6A26C1402220E9C700CD649D /* Triangle_x512.png in Resources */,
 				6A26C1562220E9C700CD649D /* Square_x1024.png in Resources */,
@@ -366,6 +371,7 @@
 				6A26C14F2220E9C700CD649D /* Triangle_x128.png in Resources */,
 				6A26C1332220E9C700CD649D /* Diamong_x1024.png in Resources */,
 				6A26C13F2220E9C700CD649D /* Square_x512.png in Resources */,
+				6AE796B0223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */,
 				6A26C1552220E9C700CD649D /* Square_x256.png in Resources */,
 				6A26C1352220E9C700CD649D /* Circle_x128.png in Resources */,
 				6A002CA921DF0410005B31F5 /* Actions.sks in Resources */,

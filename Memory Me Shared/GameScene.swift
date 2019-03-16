@@ -113,7 +113,7 @@ class GameScene: SKScene
     #if os(OSX)
     override func keyUp(with event: NSEvent)
     {
-        if(event.keyCode == 49)
+        if(event.keyCode == 49) // Spacebar
         {
             self.Game?.debugKeyPressed();
         }

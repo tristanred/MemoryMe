@@ -78,7 +78,7 @@ class MemoryMeGame
         let initialSequence = self.MemorySequence?.GetSequenceShapes();
         for shape in initialSequence!
         {
-            if let res = self.Organizer.addShape(shape: shape)
+            if self.Organizer.addShape(shape: shape) != nil
             {
                 self.Scene.addChild(shape);
             }
