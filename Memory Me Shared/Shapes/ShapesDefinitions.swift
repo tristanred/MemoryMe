@@ -85,6 +85,11 @@ var ShapeTextureMap: [ShapesKind: SKTexture] = [:];
  */
 func InitializeTextureMap(withTextureSet set: [ShapesKind: String])
 {
+//    for i in set
+//    {
+//        ShapeTextureMap[i.key] = SKTexture(imageNamed: i.value);
+//    }
+    
     ShapeTextureMap[ShapesKind.CIRCLE] = SKTexture(imageNamed: "Circle");
     ShapeTextureMap[ShapesKind.DIAMOND] = SKTexture(imageNamed: "Diamond");
     ShapeTextureMap[ShapesKind.SQUARE] = SKTexture(imageNamed: "Square");

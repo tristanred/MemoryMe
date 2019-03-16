@@ -8,6 +8,13 @@
 
 import SpriteKit
 
+enum ScreenRatioType
+{
+    case SuperTall;
+    case Tall;
+    case Square;
+}
+
 class GameScene: SKScene
 {
     // Scene size properties
@@ -27,20 +34,17 @@ class GameScene: SKScene
             abort();
         }
         
-        let scrSize = getScreenSize();
+        let sceneSize = getSizeForRatio(size: getScreenSize());
         
-        // Set the initial size depending on the device layout
-        if(isTallScreen(width: scrSize.width, height: scrSize.height))
+        if(isLandscapeSize(target: getScreenSize()))
         {
-            // iPhone X Resolution
-            scene.size.width = 1125;
-            scene.size.height = 2436;
+            scene.size.width = max(sceneSize.width, sceneSize.height);
+            scene.size.height = min(sceneSize.width, sceneSize.height);
         }
         else
         {
-            // iPad resolution
-            scene.size.width = 2048 / 2;
-            scene.size.height = 2732 / 2;
+            scene.size.width = min(sceneSize.width, sceneSize.height);
+            scene.size.height = max(sceneSize.width, sceneSize.height);
         }
         
         scene.initialWidth = scene.size.width;
@@ -51,11 +55,9 @@ class GameScene: SKScene
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFit;
-        //scene.scaleMode = .resizeFill;
         
         return scene;
     }
-    
     
     func setUpScene()
     {
@@ -78,35 +80,17 @@ class GameScene: SKScene
     
     func changedOrientation(to size: CGSize)
     {
-        if(isLandscapeSize(width: size.width, height: size.height))
+        let sceneSize = getSizeForRatio(size: size);
+        
+        if(isLandscapeSize(target: size))
         {
-            if(isTallScreen(width: size.width, height: size.height))
-            {
-                // iPhone X Resolution
-                self.size.width = 2436;
-                self.size.height = 1125;
-            }
-            else
-            {
-                // iPad resolution
-                self.size.width = 2732 / 2;
-                self.size.height = 2048 / 2;
-            }
+            self.scene?.size.width = max(sceneSize.width, sceneSize.height);
+            self.scene?.size.height = min(sceneSize.width, sceneSize.height);
         }
         else
         {
-            if(isTallScreen(width: size.width, height: size.height))
-            {
-                // iPhone X Resolution
-                self.size.width = 1125;
-                self.size.height = 2436;
-            }
-            else
-            {
-                // iPad resolution
-                self.size.width = 2048 / 2;
-                self.size.height = 2732 / 2;
-            }
+            self.scene?.size.width = min(sceneSize.width, sceneSize.height);
+            self.scene?.size.height = max(sceneSize.width, sceneSize.height);
         }
     }
     
@@ -171,12 +155,12 @@ func isTallScreen(width: CGFloat, height: CGFloat) -> Bool
 
 func isLandscapeSize(width: CGFloat, height: CGFloat) -> Bool
 {
-    if(width > height)
-    {
-        return true;
-    }
-    
-    return false;
+    return isLandscapeSize(target: CGSize(width: width, height: height));
+}
+
+func isLandscapeSize(target: CGSize) -> Bool
+{
+    return target.width > target.height;
 }
 
 func getScreenSize() -> CGSize
@@ -187,6 +171,39 @@ func getScreenSize() -> CGSize
     #if os(OSX)
     return CGSize(width: 500, height: 500);
     #endif
+}
+
+func getSizeForRatio(size: CGSize) -> CGSize
+{
+    switch(getScreenRatioType(size: size))
+    {
+    case .SuperTall:
+        return CGSize(width: 1125, height: 2436);
+    case .Tall:
+        return CGSize(width: 1242, height: 2208);
+    case .Square:
+        return CGSize(width: 2048 / 2, height: 2732 / 2);
+    }
+}
+
+func getScreenRatioType(size: CGSize) -> ScreenRatioType
+{
+    let largest = max(size.width, size.height);
+    let smallest = min(size.width, size.height);
+    
+    let ratio = largest / smallest;
+    if(ratio > 2.0)
+    {
+        return .SuperTall;
+    }
+    else if(ratio > 1.7)
+    {
+        return .Tall;
+    }
+    else
+    {
+        return .Square;
+    }
 }
 
 #if os(iOS) || os(tvOS)
