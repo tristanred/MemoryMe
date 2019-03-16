@@ -57,7 +57,7 @@ class MemoryMeGame
             return;
         }
         
-        InitializeTextureMap(withTextureSet: ShapeAssetsX128);
+        InitializeTextureMap(withTextureSet: ShapeAssetsX256);
         
         assetsAreLoaded = true;
     }
