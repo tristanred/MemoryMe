@@ -152,8 +152,9 @@ class MemoryMeGame
             if(self.Organizer.gridMustGrow(amount: self.MemorySequence!.GetSequenceShapes().count))
             {
                 self.Organizer.growGrid();
-                self.Scene.size.width += self.cellWidth;
-                self.Scene.size.height += self.cellHeigth;
+                //let increase = min(self.cellWidth, self.cellHeigth);
+                self.Scene.size.width *= 1.3;
+                self.Scene.size.height *= 1.3;
                 self.ResizeGame(withFrame: CGRect(x: 0, y: 0, width: self.Scene.size.width, height: self.Scene.size.height));
             }
             
