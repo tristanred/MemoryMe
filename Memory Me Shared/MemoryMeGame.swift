@@ -9,6 +9,10 @@
 import Foundation
 import SpriteKit
 
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+
 /**
  MemoryMe Game Core class.
  
@@ -70,6 +74,8 @@ class MemoryMeGame
             
             return;
         }
+        
+        MSAnalytics.trackEvent("Game Started");
         
         self.RecreateDebugRects();
         
@@ -138,6 +144,8 @@ class MemoryMeGame
     {
         if(self.MemorySequence!.IsFinished())
         {
+            MSAnalytics.trackEvent("Player Success", withProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"]);
+            
             // Sequence is finished. Add a shape to the sequence, shuffle the
             // positions and add the shapes back to the Scene.
             
@@ -158,6 +166,8 @@ class MemoryMeGame
                 self.Scene.size.width *= 1.3;
                 self.Scene.size.height *= 1.3;
                 self.ResizeGame(withFrame: CGRect(x: 0, y: 0, width: self.Scene.size.width, height: self.Scene.size.height));
+                
+                MSAnalytics.trackEvent("Grid growing", withProperties: ["New Size" : "(w: `\(self.Scene.size.width)`, h: `\(self.Scene.size.height)`"])
             }
             
             for shape in self.MemorySequence!.GetSequenceShapes()
@@ -177,6 +187,8 @@ class MemoryMeGame
         }
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
+            MSAnalytics.trackEvent("Player Failed", withProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"]);
+            
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {
@@ -194,6 +206,8 @@ class MemoryMeGame
                 }
                 else
                 {
+                    MSAnalytics.trackEvent("Failed to add shape due to mysterious reasons.");
+                    
                     print("Unable to add shape because of reasons.");
                 }
             }

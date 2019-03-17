@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+
 enum ScreenRatioType
 {
     case SuperTall;
@@ -36,16 +40,28 @@ class GameScene: SKScene
         
         let sceneSize = getSizeForRatio(size: getScreenSize());
         
+        var orientationIsLandscape = false; // For debugging with Analytics
         if(isLandscapeSize(target: getScreenSize()))
         {
+            orientationIsLandscape = true;
+            
             scene.size.width = max(sceneSize.width, sceneSize.height);
             scene.size.height = min(sceneSize.width, sceneSize.height);
         }
         else
         {
+            orientationIsLandscape = false;
+            
             scene.size.width = min(sceneSize.width, sceneSize.height);
             scene.size.height = max(sceneSize.width, sceneSize.height);
         }
+        
+        MSAnalytics.trackEvent("Scene initialized",
+                               withProperties: [
+                                "Scene Size":"(w: `\(scene.size.width), h: `\(scene.size.height)`",
+                                "Screen Size":"(w: `\(sceneSize.width), h: `\(sceneSize.height)`",
+                                "Orientation": orientationIsLandscape ? "Landscape" : "Portrait"
+            ]);
         
         scene.initialWidth = scene.size.width;
         scene.initialHeight = scene.size.height;
@@ -84,11 +100,15 @@ class GameScene: SKScene
         
         if(isLandscapeSize(target: size))
         {
+            MSAnalytics.trackEvent("Layout changed", withProperties: ["New layout": "Landscape"]);
+            
             self.scene?.size.width = max(sceneSize.width, sceneSize.height);
             self.scene?.size.height = min(sceneSize.width, sceneSize.height);
         }
         else
         {
+            MSAnalytics.trackEvent("Layout changed", withProperties: ["New layout": "Portrait"]);
+            
             self.scene?.size.width = min(sceneSize.width, sceneSize.height);
             self.scene?.size.height = max(sceneSize.width, sceneSize.height);
         }
