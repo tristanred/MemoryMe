@@ -76,9 +76,13 @@
 		6AF39622220E7EC00073B207 /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6AF60A07222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
 		6AF60A08222A0A9200194591 /* GridOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF60A06222A0A9200194591 /* GridOrganizer.swift */; };
+		D9FD491F96747F58E24D7704 /* Pods_Memory_Me_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F335EA31A171534B526898C /* Pods_Memory_Me_macOS.framework */; };
+		EDAA417830C5323217E2518E /* Pods_Memory_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FE93F1D98B6F552B360D5C /* Pods_Memory_Me_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23470C765DA7FF58EB23CED4 /* Pods-Memory Me iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memory Me iOS.debug.xcconfig"; path = "Target Support Files/Pods-Memory Me iOS/Pods-Memory Me iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		25F4F6DB8311A451424C7426 /* Pods-Memory Me macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memory Me macOS.release.xcconfig"; path = "Target Support Files/Pods-Memory Me macOS/Pods-Memory Me macOS.release.xcconfig"; sourceTree = "<group>"; };
 		6A002C8421DF040E005B31F5 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		6A002C8521DF040E005B31F5 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		6A002C8621DF040E005B31F5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 		6A002CA221DF0410005B31F5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6A002CA521DF0410005B31F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A002CA721DF0410005B31F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A07E224223DD8F00025299E /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		6A221ED8221F8C54003FD05A /* ShapeSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSequence.swift; sourceTree = "<group>"; };
 		6A221EDC221F9044003FD05A /* ShapesDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDefinitions.swift; sourceTree = "<group>"; };
 		6A26C11E2220E9C700CD649D /* Diamong_x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diamong_x1024.png; sourceTree = "<group>"; };
@@ -121,6 +126,10 @@
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
 		6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShapeGraphics.xcassets; sourceTree = "<group>"; };
 		6AF60A06222A0A9200194591 /* GridOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOrganizer.swift; sourceTree = "<group>"; };
+		9F335EA31A171534B526898C /* Pods_Memory_Me_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Memory_Me_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADF3EEE8DC26F21CB2C9185D /* Pods-Memory Me iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memory Me iOS.release.xcconfig"; path = "Target Support Files/Pods-Memory Me iOS/Pods-Memory Me iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C0596006C6D9A85497749CD2 /* Pods-Memory Me macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memory Me macOS.debug.xcconfig"; path = "Target Support Files/Pods-Memory Me macOS/Pods-Memory Me macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E6FE93F1D98B6F552B360D5C /* Pods_Memory_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Memory_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDAA417830C5323217E2518E /* Pods_Memory_Me_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,19 +145,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9FD491F96747F58E24D7704 /* Pods_Memory_Me_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E677A0C16C8EA852A1F1604 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6FE93F1D98B6F552B360D5C /* Pods_Memory_Me_iOS.framework */,
+				9F335EA31A171534B526898C /* Pods_Memory_Me_macOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6A002C7E21DF040E005B31F5 = {
 			isa = PBXGroup;
 			children = (
+				6A07E224223DD8F00025299E /* Podfile */,
 				6A002C8321DF040E005B31F5 /* Memory Me Shared */,
 				6A002C8E21DF0410005B31F5 /* Memory Me iOS */,
 				6A002C9F21DF0410005B31F5 /* Memory Me macOS */,
 				6A002C8D21DF0410005B31F5 /* Products */,
+				B692B95EFBDB0103EC5EC339 /* Pods */,
+				3E677A0C16C8EA852A1F1604 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,6 +261,18 @@
 			path = "Memory Me Shared/GameAssets";
 			sourceTree = SOURCE_ROOT;
 		};
+		B692B95EFBDB0103EC5EC339 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				23470C765DA7FF58EB23CED4 /* Pods-Memory Me iOS.debug.xcconfig */,
+				ADF3EEE8DC26F21CB2C9185D /* Pods-Memory Me iOS.release.xcconfig */,
+				C0596006C6D9A85497749CD2 /* Pods-Memory Me macOS.debug.xcconfig */,
+				25F4F6DB8311A451424C7426 /* Pods-Memory Me macOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,6 +280,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A002CB221DF0410005B31F5 /* Build configuration list for PBXNativeTarget "Memory Me iOS" */;
 			buildPhases = (
+				CD2539C51007D92773DB4823 /* [CP] Check Pods Manifest.lock */,
 				6A002C8821DF0410005B31F5 /* Sources */,
 				6A002C8921DF0410005B31F5 /* Frameworks */,
 				6A002C8A21DF0410005B31F5 /* Resources */,
@@ -262,6 +298,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A002CB521DF0410005B31F5 /* Build configuration list for PBXNativeTarget "Memory Me macOS" */;
 			buildPhases = (
+				46CD6A7EA92BF71B01B00CAF /* [CP] Check Pods Manifest.lock */,
 				6A002C9A21DF0410005B31F5 /* Sources */,
 				6A002C9B21DF0410005B31F5 /* Frameworks */,
 				6A002C9C21DF0410005B31F5 /* Resources */,
@@ -381,6 +418,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46CD6A7EA92BF71B01B00CAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Memory Me macOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD2539C51007D92773DB4823 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Memory Me iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A002C8821DF0410005B31F5 /* Sources */ = {
@@ -554,6 +638,7 @@
 		};
 		6A002CB321DF0410005B31F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23470C765DA7FF58EB23CED4 /* Pods-Memory Me iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -576,6 +661,7 @@
 		};
 		6A002CB421DF0410005B31F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADF3EEE8DC26F21CB2C9185D /* Pods-Memory Me iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -599,6 +685,7 @@
 		};
 		6A002CB621DF0410005B31F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0596006C6D9A85497749CD2 /* Pods-Memory Me macOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -621,6 +708,7 @@
 		};
 		6A002CB721DF0410005B31F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25F4F6DB8311A451424C7426 /* Pods-Memory Me macOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
