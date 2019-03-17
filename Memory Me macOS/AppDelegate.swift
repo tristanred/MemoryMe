@@ -23,7 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MSAppCenter.start("5eb2309d-f030-4af0-9d96-9468b04ea5d3", withServices:[
             MSAnalytics.self,
             MSCrashes.self
-        ])
+            ]);
+        
+        MSAnalytics.setEnabled(true);
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

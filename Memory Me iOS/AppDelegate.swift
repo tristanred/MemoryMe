@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSAnalytics.self,
             MSCrashes.self
         ]);
+        
+        MSAnalytics.setEnabled(true);
 
         return true
     }

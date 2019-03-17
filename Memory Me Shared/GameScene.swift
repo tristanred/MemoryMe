@@ -37,7 +37,7 @@ class GameScene: SKScene
             print("Failed to load GameScene.sks");
             abort();
         }
-        
+                
         let sceneSize = getSizeForRatio(size: getScreenSize());
         
         var orientationIsLandscape = false; // For debugging with Analytics
@@ -58,8 +58,8 @@ class GameScene: SKScene
         
         MSAnalytics.trackEvent("Scene initialized",
                                withProperties: [
-                                "Scene Size":"(w: `\(scene.size.width), h: `\(scene.size.height)`",
-                                "Screen Size":"(w: `\(sceneSize.width), h: `\(sceneSize.height)`",
+                                "Scene Size":"(w: `\(scene.size.width), h: `\(scene.size.height)`)",
+                                "Screen Size":"(w: `\(sceneSize.width), h: `\(sceneSize.height)`)",
                                 "Orientation": orientationIsLandscape ? "Landscape" : "Portrait"
             ]);
         
