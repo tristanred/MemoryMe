@@ -17,7 +17,7 @@ import SpriteKit
  */
 class MemoryMeGame
 {
-    private let Scene: SKScene;
+    private let Scene: GameScene;
     
     private var assetsAreLoaded: Bool;
     
@@ -35,7 +35,7 @@ class MemoryMeGame
      */
     private var preventInteraction: Bool = false;
     
-    init(_ scene: SKScene, _ startingSize: CGRect)
+    init(_ scene: GameScene, _ startingSize: CGRect)
     {
         self.Scene = scene;
                 
@@ -93,10 +93,12 @@ class MemoryMeGame
     
     func debugKeyPressed()
     {
-        for slot in self.Organizer.gridPositions.enumerated()
+        for shape in (self.MemorySequence?.GetSequenceShapes())!
         {
-            print("Slot [\(slot.offset)] with shape : \(slot.element.shapeOnSlot)");
+            self.MemorySequence?.ShapeClicked(kind: shape.ShapeKind);
         }
+        
+        self.VerifyGameStatus();
     }
     
     func RecreateDebugRects()
