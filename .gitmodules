@@ -1,3 +1,0 @@
-[submodule "promises"]
-	path = promises
-	url = git@github.com:google/promises.git
