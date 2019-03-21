@@ -10,12 +10,14 @@ import Foundation
 
 class PreferenceManager
 {
-    static func GetAllowsTracking() -> Bool
+    static var current: PreferenceManager = PreferenceManager();
+    
+    func GetAllowsTracking() -> Bool
     {
         return UserDefaults.standard.bool(forKey: "allows_tracking");
     }
     
-    static func SetAllowsTracking(toValue value: Bool)
+    func SetAllowsTracking(toValue value: Bool)
     {
         UserDefaults.standard.set(value, forKey: "allows_tracking");
     }

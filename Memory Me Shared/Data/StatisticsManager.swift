@@ -40,17 +40,7 @@ func getUserPreferencePath() -> String
 class StatisticsManager
 {
     private static var _pref: StatisticsManager?;
-    static var `default`: StatisticsManager {
-        get {
-            if _pref == nil
-            {
-                _pref = StatisticsManager(archiveName: "a.bin");
-                _pref?.load();
-            }
-            
-            return _pref!;
-        }
-    }
+    static var `default`: StatisticsManager = StatisticsManager(archiveName: "a.bin");
     
     public var current: UserStatistics;
     
@@ -77,6 +67,8 @@ class StatisticsManager
         {
             print("Opened the preference file successfully");
         }
+        
+        self.load();
     }
     
     public func load()
