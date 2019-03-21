@@ -70,6 +70,10 @@
 		6A26C15C2220F52300CD649D /* MemoryMeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A26C15A2220F52300CD649D /* MemoryMeGame.swift */; };
 		6A27631F2239AB4700A3F6AF /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A27631E2239AB4600A3F6AF /* LaunchScreen.png */; };
 		6A2763202239AB4700A3F6AF /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A27631E2239AB4600A3F6AF /* LaunchScreen.png */; };
+		6A277C3D2243265100EB151F /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A277C3C2243265100EB151F /* StatisticsManager.swift */; };
+		6A277C3E2243265100EB151F /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A277C3C2243265100EB151F /* StatisticsManager.swift */; };
+		6A277C402243280E00EB151F /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A277C3F2243280E00EB151F /* PreferenceManager.swift */; };
+		6A277C412243280E00EB151F /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A277C3F2243280E00EB151F /* PreferenceManager.swift */; };
 		6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6AE796AF223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */; };
 		6AE796B0223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */; };
@@ -98,7 +102,7 @@
 		6A002CA221DF0410005B31F5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6A002CA521DF0410005B31F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A002CA721DF0410005B31F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A07E224223DD8F00025299E /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		6A07E224223DD8F00025299E /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6A221ED8221F8C54003FD05A /* ShapeSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSequence.swift; sourceTree = "<group>"; };
 		6A221EDC221F9044003FD05A /* ShapesDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDefinitions.swift; sourceTree = "<group>"; };
 		6A26C11E2220E9C700CD649D /* Diamong_x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diamong_x1024.png; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		6A26C1312220E9C700CD649D /* Circle_x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circle_x256.png; sourceTree = "<group>"; };
 		6A26C15A2220F52300CD649D /* MemoryMeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryMeGame.swift; sourceTree = "<group>"; };
 		6A27631E2239AB4600A3F6AF /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		6A277C3C2243265100EB151F /* StatisticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsManager.swift; sourceTree = "<group>"; };
+		6A277C3F2243280E00EB151F /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
 		6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShapeGraphics.xcassets; sourceTree = "<group>"; };
 		6AF60A06222A0A9200194591 /* GridOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOrganizer.swift; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 		6A002C8321DF040E005B31F5 /* Memory Me Shared */ = {
 			isa = PBXGroup;
 			children = (
+				6A297A8A223EBE36004F7220 /* Data */,
 				6A221EDB221F9033003FD05A /* Shapes */,
 				6A002C8421DF040E005B31F5 /* Actions.sks */,
 				6A002C8521DF040E005B31F5 /* GameScene.sks */,
@@ -232,6 +239,15 @@
 			path = Shapes;
 			sourceTree = "<group>";
 		};
+		6A297A8A223EBE36004F7220 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6A277C3C2243265100EB151F /* StatisticsManager.swift */,
+				6A277C3F2243280E00EB151F /* PreferenceManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		6A3751C721E821C10070FF5C /* GameAssets */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +285,6 @@
 				C0596006C6D9A85497749CD2 /* Pods-Memory Me macOS.debug.xcconfig */,
 				25F4F6DB8311A451424C7426 /* Pods-Memory Me macOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -475,6 +490,8 @@
 				6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */,
 				6A26C15B2220F52300CD649D /* MemoryMeGame.swift in Sources */,
 				6A002CAC21DF0410005B31F5 /* GameScene.swift in Sources */,
+				6A277C3D2243265100EB151F /* StatisticsManager.swift in Sources */,
+				6A277C402243280E00EB151F /* PreferenceManager.swift in Sources */,
 				6A221EDD221F9044003FD05A /* ShapesDefinitions.swift in Sources */,
 				6A002C9221DF0410005B31F5 /* GameViewController.swift in Sources */,
 				6A221ED9221F8C54003FD05A /* ShapeSequence.swift in Sources */,
@@ -490,6 +507,8 @@
 				6A002CAD21DF0410005B31F5 /* GameScene.swift in Sources */,
 				6A26C15C2220F52300CD649D /* MemoryMeGame.swift in Sources */,
 				6AF39622220E7EC00073B207 /* GameShape.swift in Sources */,
+				6A277C3E2243265100EB151F /* StatisticsManager.swift in Sources */,
+				6A277C412243280E00EB151F /* PreferenceManager.swift in Sources */,
 				6A221EDE221F9044003FD05A /* ShapesDefinitions.swift in Sources */,
 				6A002CA321DF0410005B31F5 /* GameViewController.swift in Sources */,
 				6A221EDA221F8C54003FD05A /* ShapeSequence.swift in Sources */,

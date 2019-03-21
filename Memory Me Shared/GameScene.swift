@@ -37,6 +37,13 @@ class GameScene: SKScene
             print("Failed to load GameScene.sks");
             abort();
         }
+        
+        let x = StatisticsManager.default;
+        x.current.overallLongestLength = 100;
+        
+        x.save();
+        
+        
                 
         let sceneSize = getSizeForRatio(size: getScreenSize());
         
