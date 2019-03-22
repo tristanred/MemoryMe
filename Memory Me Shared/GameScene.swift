@@ -43,8 +43,6 @@ class GameScene: SKScene
         
         x.save();
         
-        
-                
         let sceneSize = getSizeForRatio(size: getScreenSize());
         
         var orientationIsLandscape = false; // For debugging with Analytics

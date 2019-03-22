@@ -13,10 +13,15 @@ class UserStatistics : NSObject, NSCoding
     var overallAverageLength: Int32 = 0;
     var overallLongestLength: Int32 = 0;
     
+    var gamesWon: Int32 = 0;
+    var gamesLost: Int32 = 0;
+    
     func encode(with aCoder: NSCoder)
     {
         aCoder.encode(overallAverageLength, forKey: "overallAverageLength");
         aCoder.encode(overallLongestLength, forKey: "overallLongestLength");
+        aCoder.encode(gamesWon, forKey: "gamesWon");
+        aCoder.encode(gamesLost, forKey: "gameLost");
     }
     
     required convenience init?(coder aDecoder: NSCoder)
@@ -25,13 +30,15 @@ class UserStatistics : NSObject, NSCoding
         
         self.overallAverageLength = aDecoder.decodeInt32(forKey: "overallAverageLength");
         self.overallLongestLength = aDecoder.decodeInt32(forKey: "overallLongestLength");
+        self.gamesWon = aDecoder.decodeInt32(forKey: "gamesWon");
+        self.gamesLost = aDecoder.decodeInt32(forKey: "gamesLost");
     }
 }
 
 func getUserPreferencePath() -> String
 {
     #if os(OSX)
-    return "";
+    return NSHomeDirectory();
     #else
     return NSHomeDirectory();
     #endif

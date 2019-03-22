@@ -145,7 +145,9 @@ class MemoryMeGame
         if(self.MemorySequence!.IsFinished())
         {
             MSAnalytics.trackEvent("Player Success", withProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"]);
-            
+            StatisticsManager.default.current.gamesWon += 1;
+            StatisticsManager.default.save();
+
             // Sequence is finished. Add a shape to the sequence, shuffle the
             // positions and add the shapes back to the Scene.
             
@@ -188,6 +190,8 @@ class MemoryMeGame
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
             MSAnalytics.trackEvent("Player Failed", withProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"]);
+            StatisticsManager.default.current.gamesLost += 1;
+            StatisticsManager.default.save();
             
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
