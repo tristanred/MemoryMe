@@ -12,15 +12,19 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 
-func logTrace(withMessage msg: String)
+func logTrace(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Trace: \(msg)";
     
     print(fmt);
-    MSAnalytics.trackEvent(fmt, withProperties: ["type": "Trace"]);
+    
+    if(export)
+    {
+        MSAnalytics.trackEvent(fmt, withProperties: ["type": "Trace"]);
+    }
 }
 
-func logTrace(withMessage msg: String, andProperties props: [String:String])
+func logTrace(withMessage msg: String, andProperties props: [String:String], export: Bool = false)
 {
     let fmt = "Trace: \(msg)";
     
@@ -30,46 +34,64 @@ func logTrace(withMessage msg: String, andProperties props: [String:String])
         print("    \(prop.key) = \(prop.value)");
     }
     
-    let additionalProperties = props.merging(["type":"Trace"], uniquingKeysWith: { a,b in return a });
-    MSAnalytics.trackEvent(fmt, withProperties: additionalProperties);
+    if(export)
+    {
+        let additionalProperties = props.merging(["type":"Trace"], uniquingKeysWith: { a,b in return a });
+        MSAnalytics.trackEvent(fmt, withProperties: additionalProperties);
+    }
 }
 
-func logMessage(withMessage msg: String)
+func logMessage(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Message: \(msg)";
     
-    print(fmt);
-    MSAnalytics.trackEvent(fmt, withProperties: ["type": "Message"]);
+    if(export)
+    {
+        print(fmt);
+        MSAnalytics.trackEvent(fmt, withProperties: ["type": "Message"]);
+    }
 }
 
-func logWarning(withMessage msg: String)
+func logWarning(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Warning: \(msg)";
     
-    print(fmt);
-    MSAnalytics.trackEvent(fmt, withProperties: ["type": "Warning"]);
+    if(export)
+    {
+        print(fmt);
+        MSAnalytics.trackEvent(fmt, withProperties: ["type": "Warning"]);
+    }
 }
 
-func logError(withMessage msg: String)
+func logError(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Error: \(msg)";
     
-    print("[\(ErrorCode.NONE)]",  fmt);
-    MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(ErrorCode.NONE)"]);
+    if(export)
+    {
+        print("[\(ErrorCode.NONE)]",  fmt);
+        MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(ErrorCode.NONE)"]);
+    }
 }
 
-func logError(withErrorCode code: ErrorCode, andMessage msg: String)
+func logError(withErrorCode code: ErrorCode, andMessage msg: String, export: Bool = false)
 {
     let fmt = "Error: \(msg)";
     
-    print("[\(code)]", fmt);
-    MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(code)"]);
+    if(export)
+    {
+        print("[\(code)]", fmt);
+        MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(code)"]);
+    }
 }
 
-func logError(fromErrorClass err: BaseError)
+func logError(fromErrorClass err: BaseError, export: Bool = false)
 {
     let fmt = "Error: \(err.errorName), \(err.errorMessage)";
     
-    print("[\(err.errorCode)]", fmt);
-    MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(err.errorCode)"]);
+    if(export)
+    {
+        print("[\(err.errorCode)]", fmt);
+        MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(err.errorCode)"]);
+    }
 }
