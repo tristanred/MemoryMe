@@ -20,6 +20,20 @@ func logTrace(withMessage msg: String)
     MSAnalytics.trackEvent(fmt, withProperties: ["type": "Trace"]);
 }
 
+func logTrace(withMessage msg: String, andProperties props: [String:String])
+{
+    let fmt = "Trace: \(msg)";
+    
+    print(fmt);
+    for prop in props
+    {
+        print("    \(prop.key) = \(prop.value)");
+    }
+    
+    let additionalProperties = props.merging(["type":"Trace"], uniquingKeysWith: { a,b in return a });
+    MSAnalytics.trackEvent(fmt, withProperties: additionalProperties);
+}
+
 func logMessage(withMessage msg: String)
 {
     let fmt = "Message: \(msg)";
