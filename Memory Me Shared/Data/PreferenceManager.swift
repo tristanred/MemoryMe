@@ -8,6 +8,13 @@
 
 import Foundation
 
+/**
+ * Manager for the player preferences. The user preferences are saved and can
+ * persist across app sessions.
+ *
+ * This class is using the UserDefaults library instead of saving it in an
+ * archive. We'll see how it goes.
+ */
 class PreferenceManager
 {
     static var current: PreferenceManager = PreferenceManager();

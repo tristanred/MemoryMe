@@ -49,14 +49,19 @@ class MemoryMeGame
         cellHeigth = initialSize.height / CGFloat(self.Organizer.gridRows);
         
         assetsAreLoaded = false;
+        
+        print("Created game instance");
+        logTrace(withMessage: "Created game instance", andProperties: [
+            "Cell Width" : "\(cellWidth)",
+            "Cell Height" : "\(cellHeigth)"
+        ], export: true);
     }
     
     func LoadTextures()
     {
         if(self.assetsAreLoaded == true)
         {
-            // Should call ReloadTexture to change the texture set.
-            print("Warning: LoadTexture called when assets are already loaded.");
+            logWarning(withMessage: "LoadTexture called when assets are already loaded.")
             
             return;
         }
@@ -70,12 +75,12 @@ class MemoryMeGame
     {
         if(assetsAreLoaded == false)
         {
-            print("Error: StartNewGame called before assets are loaded.");
+            logError(withMessage: "StartNewGame called before assets are loaded.", export: true)
             
             return;
         }
         
-        MSAnalytics.trackEvent("Game Started");
+        logTrace(withMessage: "New game started");
         
         self.RecreateDebugRects();
         
@@ -90,7 +95,7 @@ class MemoryMeGame
             }
             else
             {
-                print("Unable to add shape because of reasons.");
+                logError(withMessage: "Unable to add shape because of reasons.", export: true)
             }
         }
         self.Organizer.shuffleShapes();
@@ -144,7 +149,8 @@ class MemoryMeGame
     {
         if(self.MemorySequence!.IsFinished())
         {
-            MSAnalytics.trackEvent("Player Success", withProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"]);
+            logTrace(withMessage: "Player Success", andProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"], export: true)
+            
             StatisticsManager.default.current.gamesWon += 1;
             StatisticsManager.default.save();
 
@@ -164,12 +170,13 @@ class MemoryMeGame
             if(self.Organizer.gridMustGrow(amount: self.MemorySequence!.GetSequenceShapes().count))
             {
                 self.Organizer.growGrid();
-                //let increase = min(self.cellWidth, self.cellHeigth);
+                
+                // Using a 30% grow seems to work.
                 self.Scene.size.width *= 1.3;
                 self.Scene.size.height *= 1.3;
                 self.ResizeGame(withFrame: CGRect(x: 0, y: 0, width: self.Scene.size.width, height: self.Scene.size.height));
                 
-                MSAnalytics.trackEvent("Grid growing", withProperties: ["New Size" : "(w: `\(self.Scene.size.width)`, h: `\(self.Scene.size.height)`"])
+                logTrace(withMessage: "Grid growing", andProperties: ["New Size" : "(w: `\(self.Scene.size.width)`, h: `\(self.Scene.size.height)`"], export: true)
             }
             
             for shape in self.MemorySequence!.GetSequenceShapes()
@@ -180,7 +187,7 @@ class MemoryMeGame
                 }
                 else
                 {
-                    print("Unable to add shape because of reasons.");
+                    logError(withMessage: "Unable to add shape because of reasons.")
                 }
             }
             
@@ -189,7 +196,8 @@ class MemoryMeGame
         }
         else if(MemorySequence!.SequenceIsCorrect() == false)
         {
-            MSAnalytics.trackEvent("Player Failed", withProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"]);
+            logTrace(withMessage: "Player Failed", andProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"], export: true);
+            
             StatisticsManager.default.current.gamesLost += 1;
             StatisticsManager.default.save();
             
@@ -210,9 +218,7 @@ class MemoryMeGame
                 }
                 else
                 {
-                    MSAnalytics.trackEvent("Failed to add shape due to mysterious reasons.");
-                    
-                    print("Unable to add shape because of reasons.");
+                    logError(withMessage: "Failed to add shape due to mysterious reasons.");
                 }
             }
             
@@ -229,6 +235,8 @@ class MemoryMeGame
     {
         if (preventInteraction == true)
         {
+            StatisticsManager.default.current.overclick += 1;
+            
             return;
         }
         

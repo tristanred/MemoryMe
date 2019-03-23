@@ -62,6 +62,7 @@ class GridOrganizer
     var gridColumns: Int;
     var gridRows: Int;
     
+    // How much space in the grid we can use before growing up.
     let keepAvailableFactor: CGFloat = 0.75;
     
     var gridPositions: [GridSlot];
@@ -122,6 +123,8 @@ class GridOrganizer
         }
         
         // Return nil if no free cells were found.
+        logWarning(withMessage: "Was unable to find a free grid slot.", export: true);
+        
         return nil;
     }
     

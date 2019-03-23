@@ -16,12 +16,18 @@ class UserStatistics : NSObject, NSCoding
     var gamesWon: Int32 = 0;
     var gamesLost: Int32 = 0;
     
+    // Misc. stats
+    
+    // Trace stat of how much players spam click on shapes
+    var overclick: Int32 = 0;
+    
     func encode(with aCoder: NSCoder)
     {
         aCoder.encode(overallAverageLength, forKey: "overallAverageLength");
         aCoder.encode(overallLongestLength, forKey: "overallLongestLength");
         aCoder.encode(gamesWon, forKey: "gamesWon");
         aCoder.encode(gamesLost, forKey: "gameLost");
+        aCoder.encode(overclick, forKey: "overclick");
     }
     
     required convenience init?(coder aDecoder: NSCoder)
@@ -32,6 +38,7 @@ class UserStatistics : NSObject, NSCoding
         self.overallLongestLength = aDecoder.decodeInt32(forKey: "overallLongestLength");
         self.gamesWon = aDecoder.decodeInt32(forKey: "gamesWon");
         self.gamesLost = aDecoder.decodeInt32(forKey: "gamesLost");
+        self.overclick = aDecoder.decodeInt32(forKey: "overclick");
     }
 }
 

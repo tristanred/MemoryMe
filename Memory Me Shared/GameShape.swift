@@ -19,7 +19,7 @@ class GameShape : SKSpriteNode
     {
         if(ShapeTextureMap.isEmpty)
         {
-            print("Error: Creating a GameShape but the ShapeTextureMap is uninitialized.");
+            logError(withMessage: "Creating a GameShape but the ShapeTextureMap is uninitialized.", export: true);
             
             return nil;
         }
@@ -41,6 +41,5 @@ class GameShape : SKSpriteNode
     {
         self.xScale = 1;
         self.yScale = 1;
-        
     }
 }

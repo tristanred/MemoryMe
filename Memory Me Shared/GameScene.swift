@@ -34,9 +34,12 @@ class GameScene: SKScene
     {
         // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks");
+            logError(withMessage: "Failed to load GameScene.sks. Aborting", export: true);
+            
             abort();
         }
+        
+        logTrace(withMessage: "Loaded Game Scene");
         
         let x = StatisticsManager.default;
         x.current.overallLongestLength = 100;
@@ -61,12 +64,12 @@ class GameScene: SKScene
             scene.size.height = max(sceneSize.width, sceneSize.height);
         }
         
-        MSAnalytics.trackEvent("Scene initialized",
-                               withProperties: [
-                                "Scene Size":"(w: `\(scene.size.width), h: `\(scene.size.height)`)",
-                                "Screen Size":"(w: `\(sceneSize.width), h: `\(sceneSize.height)`)",
-                                "Orientation": orientationIsLandscape ? "Landscape" : "Portrait"
-            ]);
+        logTrace(withMessage: "Scene initialized", andProperties: [
+            "Scene Size":"(w: `\(scene.size.width), h: `\(scene.size.height)`)",
+            "Screen Size":"(w: `\(sceneSize.width), h: `\(sceneSize.height)`)",
+            "Screen Ratio": "\(sceneSize.width / sceneSize.height)",
+            "Orientation": orientationIsLandscape ? "Landscape" : "Portrait"
+            ], export: true);
         
         scene.initialWidth = scene.size.width;
         scene.initialHeight = scene.size.height;
@@ -82,6 +85,8 @@ class GameScene: SKScene
     
     func setUpScene()
     {
+        logTrace(withMessage: "Setting up game components.");
+        
         self.Game = MemoryMeGame(self, GetViewFrame());
         
         self.Game?.LoadTextures();
@@ -105,14 +110,14 @@ class GameScene: SKScene
         
         if(isLandscapeSize(target: size))
         {
-            MSAnalytics.trackEvent("Layout changed", withProperties: ["New layout": "Landscape"]);
+            logTrace(withMessage: "Layout changed", andProperties: ["New layout": "Landscape"])
             
             self.scene?.size.width = max(sceneSize.width, sceneSize.height);
             self.scene?.size.height = min(sceneSize.width, sceneSize.height);
         }
         else
         {
-            MSAnalytics.trackEvent("Layout changed", withProperties: ["New layout": "Portrait"]);
+            logTrace(withMessage: "Layout changed", andProperties: ["New layout": "Portrait"])
             
             self.scene?.size.width = min(sceneSize.width, sceneSize.height);
             self.scene?.size.height = max(sceneSize.width, sceneSize.height);
@@ -124,6 +129,8 @@ class GameScene: SKScene
     {
         if(event.keyCode == 49) // Spacebar
         {
+            logTrace(withMessage: "Cheat triggered");
+            
             self.Game?.debugKeyPressed();
         }
     }

@@ -28,10 +28,13 @@ class ShapeSequence
     
     init()
     {
+        logTrace(withMessage: "Creating empty Shape sequence.");
     }
     
     init(withStartingShapeCount count: Int)
     {
+        logTrace(withMessage: "Creating shape sequence with \(count) shapes");
+        
         for _ in 0..<count
         {
             let newShape = GameShape.random()!;
@@ -43,6 +46,8 @@ class ShapeSequence
     
     init(withStartingShapes shapes: [GameShape])
     {
+        logTrace(withMessage: "Creating shape sequence with \(shapes.count) shapes");
+        
         shapesInPlay = shapes;
         
         shapeSequence = shapes.map( {(shape: GameShape) -> ShapesKind in
