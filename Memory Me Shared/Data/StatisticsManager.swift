@@ -44,6 +44,17 @@ func getUserPreferencePath() -> String
     #endif
 }
 
+/**
+ * Manager class for a player's statistics. This class handles the persistance
+ * of a UserStatistics class.
+ *
+ * The stats are saved in an NSKeyedArchive and handled using the save/load
+ * methods.
+ *
+ * The manager has a static 'default' property with the default set of stats.
+ * This static property can be used to manipulate the main statistic manager
+ * instead of creating a separate instance.
+ */
 class StatisticsManager
 {
     private static var _pref: StatisticsManager?;
@@ -51,36 +62,58 @@ class StatisticsManager
     
     public var current: UserStatistics;
     
-    private var preferenceFile: FileHandle?;
+    private var statsFile: FileHandle?;
     
+    /**
+     * Main initializer, must specify a file name and the class will handle
+     * locating the file into it's application directory.
+     *
+     * The default archive name is "a.bin"
+     */
     init(archiveName: String)
     {
         current = UserStatistics();
 
-        preferenceFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + "/" + archiveName);
+        statsFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + "/" + archiveName);
         
-        if(preferenceFile == nil)
+        if(statsFile == nil)
         {
             if FileManager.default.createFile(atPath: getUserPreferencePath() + "/" + archiveName, contents: nil, attributes: nil)
             {
-                preferenceFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + "/" + archiveName);
+                statsFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + "/" + archiveName);
+                
+                if(statsFile == nil)
+                {
+                    logError(withMessage: "Could not open new statistics file.", export: true);
+                }
+                else
+                {
+                    logTrace(withMessage: "Opened new statistics file.");
+                }
             }
             else
             {
-                print("Can't open or create a preference file");
+                logError(withMessage: "Could not open or create a statistics file.", export: true);
             }
         }
         else
         {
-            print("Opened the preference file successfully");
+            logTrace(withMessage: "Opened existing statistics file.");
         }
         
         self.load();
     }
     
+    /**
+     * Load the statistics from the archive file.
+     *
+     * If the load is successful, the 'current' property is updated with a new
+     * instance with the deserialized values. If the load failed, the
+     * 'current' property is not updated.
+     */
     public func load()
     {
-        if let openFile = preferenceFile
+        if let openFile = statsFile
         {
             openFile.seek(toFileOffset: 0);
             
@@ -95,14 +128,17 @@ class StatisticsManager
             }
             catch
             {
-                print("Unable to open preference file");
+                logError(withMessage: "Unable to load the statistics file.", export: true);
             }
         }
     }
     
+    /**
+     * Save the 'current' object into the archive file.
+    */
     public func save()
     {
-        if let openFile = preferenceFile
+        if let openFile = statsFile
         {
             openFile.seek(toFileOffset: 0);
             
@@ -110,21 +146,15 @@ class StatisticsManager
             {
                 let dat = try NSKeyedArchiver.archivedData(withRootObject: current, requiringSecureCoding: false);
                 try dat.write(to: URL(fileURLWithPath: getUserPreferencePath() + "/a.bin"));
-                
-                return;
             }
             catch
             {
-                
+                logError(withMessage: "Failed to save the archive file.", export: true);
             }
-            
-            let write = NSKeyedArchiver(requiringSecureCoding: false);
-            write.encode(current, forKey: "pref");
-            
-            let data = write.encodedData;
-            
-            preferenceFile?.seek(toFileOffset: 0);
-            preferenceFile?.write(data);
+        }
+        else
+        {
+            logError(withMessage: "Unable to open the statistics file.", export: true);
         }
     }
 }
