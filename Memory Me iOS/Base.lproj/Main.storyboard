@@ -1,24 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="geU-H5-NiV">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game View Controller-->
+        <!--HAA-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Memory_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="bNo-s9-wk6"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1CH-dO-uqv" appends="YES" id="QhH-E6-1vb"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="HAA" id="Pw9-JM-wr7">
+                        <barButtonItem key="backBarButtonItem" title="Backs" id="v09-PM-sSp"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cheatz" id="jUe-TG-AJx"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer maximumNumberOfTouches="1" id="1CH-dO-uqv">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="screenEdgeSwipe:" destination="BV1-FR-VrT" id="WWc-fa-sUx"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="1680.8" y="568.9655172413793"/>
+        </scene>
+        <!--SettingsViewController-->
+        <scene sceneID="HG3-Ae-4cA">
+            <objects>
+                <viewController storyboardIdentifier="Settings" id="cbI-34-KXk" userLabel="SettingsViewController" customClass="SettingsViewController" customModule="Memory_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o05-sV-70i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jnn-KC-237">
+                                <rect key="frame" x="172" y="180" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cheats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao6-Oi-Y82">
+                                <rect key="frame" x="110" y="185" width="54" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ao6-Oi-Y82" firstAttribute="centerY" secondItem="Jnn-KC-237" secondAttribute="centerY" id="BZB-R0-rpa"/>
+                            <constraint firstItem="ao6-Oi-Y82" firstAttribute="top" secondItem="oTR-Ya-2c7" secondAttribute="top" constant="165" id="Gky-1C-Fuc"/>
+                            <constraint firstItem="ao6-Oi-Y82" firstAttribute="leading" secondItem="oTR-Ya-2c7" secondAttribute="leading" constant="110" id="Hgu-id-Ur4"/>
+                            <constraint firstItem="Jnn-KC-237" firstAttribute="leading" secondItem="ao6-Oi-Y82" secondAttribute="trailing" constant="8" symbolic="YES" id="mOI-CX-FxF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oTR-Ya-2c7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GLX-bt-Hfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2660" y="568.9655172413793"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Wc-ZH-irK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="geU-H5-NiV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="h5L-hK-Cwe">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="relationship" relationship="rootViewController" id="aTN-fM-rqY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fen-xY-A5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="741.60000000000002" y="568.9655172413793"/>
         </scene>
     </scenes>
 </document>

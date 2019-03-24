@@ -14,9 +14,33 @@ class GameViewController: UIViewController {
 
     var loadedGameScene: GameScene?;
     
+    @IBAction func screenEdgeSwipe(_ sender: UIGestureRecognizer) {
+        print("wololo");
+        
+        if(sender.state == .ended)
+        {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false);
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         let scene = GameScene.newGameScene();
         
         loadedGameScene = scene;
