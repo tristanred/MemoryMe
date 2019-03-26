@@ -28,4 +28,24 @@ class PreferenceManager
     {
         UserDefaults.standard.set(value, forKey: "allows_tracking");
     }
+    
+    func GetEnabledCheats() -> Bool
+    {
+        return UserDefaults.standard.bool(forKey: "enabled_cheats");
+    }
+    
+    func SetEnabledCheats(toValue value: Bool)
+    {
+        UserDefaults.standard.set(value, forKey: "enabled_cheats");
+    }
+    
+    func GetUseDebugLayer() -> Bool
+    {
+        return UserDefaults.standard.bool(forKey: "debug_layer");
+    }
+    
+    func SetUseDebugLayer(toValue value: Bool)
+    {
+        UserDefaults.standard.set(value, forKey: "debug_layer");
+    }
 }

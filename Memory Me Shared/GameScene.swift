@@ -159,6 +159,23 @@ class GameScene: SKScene
     {
         self.Game?.Update();
     }
+    
+    func receiveUpdatedPreferences(_ vm: SettingsViewModel)
+    {
+        PreferenceManager.current.SetAllowsTracking(toValue: vm.enableTracking);
+        PreferenceManager.current.SetEnabledCheats(toValue: vm.enableCheats);
+        PreferenceManager.current.SetUseDebugLayer(toValue: vm.showDebugLayer);
+    }
+    
+    func sendUserPreferences() -> SettingsViewModel
+    {
+        var vm = SettingsViewModel();
+        vm.enableCheats = PreferenceManager.current.GetEnabledCheats();
+        vm.enableTracking = PreferenceManager.current.GetAllowsTracking();
+        vm.showDebugLayer = PreferenceManager.current.GetUseDebugLayer();
+        
+        return vm;
+    }
 }
 
 func isTallScreen(width: CGFloat, height: CGFloat) -> Bool

@@ -10,8 +10,8 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
-
+class GameViewController: UIViewController, SettingsChangeDelegate
+{
     var loadedGameScene: GameScene?;
     
     @IBAction func screenEdgeSwipe(_ sender: UIGestureRecognizer) {
@@ -19,9 +19,13 @@ class GameViewController: UIViewController {
         
         if(sender.state == .ended)
         {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
-            self.navigationController?.pushViewController(newViewController, animated: true)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController;
+            newViewController.settingsDelegate = self;
+            newViewController.viewModel = loadedGameScene?.sendUserPreferences() ?? SettingsViewModel();
+            newViewController.viewModel.enableCheats = true;
+            
+            self.navigationController?.pushViewController(newViewController, animated: true);
         }
     }
     
@@ -39,7 +43,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         let scene = GameScene.newGameScene();
         
@@ -52,6 +55,16 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true
+    }
+    
+    func settingsAccepted(_ vm: SettingsViewModel)
+    {
+        loadedGameScene?.receiveUpdatedPreferences(vm);
+    }
+    
+    func settingsCancelled()
+    {
+        
     }
 
     override var shouldAutorotate: Bool {

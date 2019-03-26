@@ -8,13 +8,38 @@
 
 import UIKit
 
-class SettingsViewController : UITableViewController {
+protocol SettingsChangeDelegate
+{
+    init()
     
-    override func viewDidLoad() {
-        print("View loaded heyy");
-        
-        
+    func settingsAccepted(_ vm: SettingsViewModel)
+    
+    func settingsCancelled()
+}
+
+class SettingsViewController : UITableViewController
+{
+    public var settingsDelegate: SettingsChangeDelegate?;
+    public var viewModel = SettingsViewModel();
+    
+    @IBOutlet weak private var cheatsSwitch: UISwitch!;
+    @IBOutlet weak private var debugLayerSwitch: UISwitch!;
+    @IBOutlet weak private var trackingSwitch: UISwitch!;
+    
+    override func viewDidLoad()
+    {
+        cheatsSwitch.isOn = viewModel.enableCheats;
+        debugLayerSwitch.isOn = viewModel.showDebugLayer;
+        trackingSwitch.isOn = viewModel.enableTracking;
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        viewModel.enableCheats = cheatsSwitch.isOn;
+        viewModel.showDebugLayer = debugLayerSwitch.isOn;
+        viewModel.enableTracking = trackingSwitch.isOn;
+        
+        // TODO : Check if accepted or cancelled
+        settingsDelegate?.settingsAccepted(viewModel);
+    }
 }
