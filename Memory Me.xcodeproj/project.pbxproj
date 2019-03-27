@@ -370,6 +370,7 @@
 				TargetAttributes = {
 					6A002C8B21DF0410005B31F5 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					6A002C9D21DF0410005B31F5 = {
 						CreatedOnToolsVersion = 10.1;
@@ -711,7 +712,7 @@
 				PRODUCT_NAME = "Memory Me";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -734,7 +735,7 @@
 				PRODUCT_NAME = "Memory Me";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
