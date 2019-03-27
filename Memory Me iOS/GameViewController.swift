@@ -23,7 +23,6 @@ class GameViewController: UIViewController, SettingsChangeDelegate
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController;
             newViewController.settingsDelegate = self;
             newViewController.viewModel = loadedGameScene?.sendUserPreferences() ?? SettingsViewModel();
-            newViewController.viewModel.enableCheats = true;
             
             self.navigationController?.pushViewController(newViewController, animated: true);
         }
