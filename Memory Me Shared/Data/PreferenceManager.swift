@@ -49,3 +49,20 @@ class PreferenceManager
         UserDefaults.standard.set(value, forKey: "debug_layer");
     }
 }
+
+// Shorthand methods below
+
+func allowsTracking() -> Bool
+{
+    return PreferenceManager.current.GetAllowsTracking();
+}
+
+func useDebugLayer() -> Bool
+{
+    return PreferenceManager.current.GetUseDebugLayer();
+}
+
+func useCheats() -> Bool
+{
+    return PreferenceManager.current.GetEnabledCheats();
+}

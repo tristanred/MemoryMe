@@ -112,8 +112,31 @@ class MemoryMeGame
         self.VerifyGameStatus();
     }
     
+    func activateDebugLayer(state value: Bool)
+    {
+        if(value)
+        {
+            self.RecreateDebugRects();
+        }
+        else
+        {
+            for node in Scene.children
+            {
+                if node is SKShapeNode
+                {
+                    node.removeFromParent();
+                }
+            }
+        }
+    }
+    
     func RecreateDebugRects()
     {
+        if(useDebugLayer() == false)
+        {
+            return;
+        }
+        
         for node in Scene.children
         {
             if node is SKShapeNode

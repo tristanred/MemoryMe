@@ -165,6 +165,8 @@ class GameScene: SKScene
         PreferenceManager.current.SetAllowsTracking(toValue: vm.enableTracking);
         PreferenceManager.current.SetEnabledCheats(toValue: vm.enableCheats);
         PreferenceManager.current.SetUseDebugLayer(toValue: vm.showDebugLayer);
+        
+        self.Game?.activateDebugLayer(state: vm.showDebugLayer);
     }
     
     func sendUserPreferences() -> SettingsViewModel

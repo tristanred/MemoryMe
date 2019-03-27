@@ -18,7 +18,7 @@ func logTrace(withMessage msg: String, export: Bool = false)
     
     print(fmt);
     
-    if(export)
+    if(export && allowsTracking())
     {
         MSAnalytics.trackEvent(fmt, withProperties: ["type": "Trace"]);
     }
@@ -34,7 +34,7 @@ func logTrace(withMessage msg: String, andProperties props: [String:String], exp
         print("    \(prop.key) = \(prop.value)");
     }
     
-    if(export)
+    if(export && allowsTracking())
     {
         let additionalProperties = props.merging(["type":"Trace"], uniquingKeysWith: { a,b in return a });
         MSAnalytics.trackEvent(fmt, withProperties: additionalProperties);
@@ -45,7 +45,7 @@ func logMessage(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Message: \(msg)";
     
-    if(export)
+    if(export && allowsTracking())
     {
         print(fmt);
         MSAnalytics.trackEvent(fmt, withProperties: ["type": "Message"]);
@@ -56,7 +56,7 @@ func logWarning(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Warning: \(msg)";
     
-    if(export)
+    if(export && allowsTracking())
     {
         print(fmt);
         MSAnalytics.trackEvent(fmt, withProperties: ["type": "Warning"]);
@@ -67,7 +67,7 @@ func logError(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Error: \(msg)";
     
-    if(export)
+    if(export && allowsTracking())
     {
         print("[\(ErrorCode.NONE)]",  fmt);
         MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(ErrorCode.NONE)"]);
@@ -78,7 +78,7 @@ func logError(withErrorCode code: ErrorCode, andMessage msg: String, export: Boo
 {
     let fmt = "Error: \(msg)";
     
-    if(export)
+    if(export && allowsTracking())
     {
         print("[\(code)]", fmt);
         MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(code)"]);
@@ -89,7 +89,7 @@ func logError(fromErrorClass err: BaseError, export: Bool = false)
 {
     let fmt = "Error: \(err.errorName), \(err.errorMessage)";
     
-    if(export)
+    if(export && allowsTracking())
     {
         print("[\(err.errorCode)]", fmt);
         MSAnalytics.trackEvent(fmt, withProperties: ["type": "Error", "code": "\(err.errorCode)"]);

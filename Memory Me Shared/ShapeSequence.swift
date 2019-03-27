@@ -85,7 +85,11 @@ class ShapeSequence
     
     func SequenceIsCorrect() -> Bool
     {
-        return true;
+        if(useCheats())
+        {
+            return true;
+        }
+        
         for i in 0..<shapesClicked.count
         {
             if(shapesClicked[i] != shapeSequence[i])
