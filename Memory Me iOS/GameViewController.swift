@@ -12,6 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController, SettingsChangeDelegate
 {
+    
     var loadedGameScene: GameScene?;
     
     @IBAction func screenEdgeSwipe(_ sender: UIGestureRecognizer) {
@@ -64,6 +65,11 @@ class GameViewController: UIViewController, SettingsChangeDelegate
     func settingsCancelled()
     {
         
+    }
+    
+    func deleteDataRequest()
+    {
+        self.loadedGameScene?.deletePlayerData();
     }
 
     override var shouldAutorotate: Bool {

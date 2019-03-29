@@ -48,6 +48,13 @@ class PreferenceManager
     {
         UserDefaults.standard.set(value, forKey: "debug_layer");
     }
+    
+    func resetData()
+    {
+        UserDefaults.standard.set(false, forKey: "debug_layer");
+        UserDefaults.standard.set(false, forKey: "enabled_cheats");
+        UserDefaults.standard.set(false, forKey: "allows_tracking");
+    }
 }
 
 // Shorthand methods below

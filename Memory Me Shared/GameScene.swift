@@ -178,6 +178,12 @@ class GameScene: SKScene
         
         return vm;
     }
+    
+    func deletePlayerData()
+    {
+        PreferenceManager.current.resetData();
+        StatisticsManager.default.resetData();
+    }
 }
 
 func isTallScreen(width: CGFloat, height: CGFloat) -> Bool

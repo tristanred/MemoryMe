@@ -12,9 +12,11 @@ protocol SettingsChangeDelegate
 {
     init()
     
-    func settingsAccepted(_ vm: SettingsViewModel)
+    func settingsAccepted(_ vm: SettingsViewModel);
     
-    func settingsCancelled()
+    func settingsCancelled();
+    
+    func deleteDataRequest();
 }
 
 class SettingsViewController : UITableViewController
@@ -42,4 +44,10 @@ class SettingsViewController : UITableViewController
         // TODO : Check if accepted or cancelled
         settingsDelegate?.settingsAccepted(viewModel);
     }
+    
+    @IBAction func deleteDataPressed(_ sender: UIButton)
+    {
+        settingsDelegate?.deleteDataRequest();
+    }
+    
 }

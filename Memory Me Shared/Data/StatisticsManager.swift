@@ -10,6 +10,8 @@ import Foundation
 
 class UserStatistics : NSObject, NSCoding
 {
+    var dailySequenceMaximum: (date: Date, amount: Int32) = (Date(), 0);
+    
     var overallAverageLength: Int32 = 0;
     var overallLongestLength: Int32 = 0;
     
@@ -23,6 +25,9 @@ class UserStatistics : NSObject, NSCoding
     
     func encode(with aCoder: NSCoder)
     {
+        aCoder.encode(dailySequenceMaximum.date, forKey: "dailySequenceMaximum_date");
+        aCoder.encode(dailySequenceMaximum.amount, forKey: "dailySequenceMaximum_amount");
+        
         aCoder.encode(overallAverageLength, forKey: "overallAverageLength");
         aCoder.encode(overallLongestLength, forKey: "overallLongestLength");
         aCoder.encode(gamesWon, forKey: "gamesWon");
@@ -33,6 +38,14 @@ class UserStatistics : NSObject, NSCoding
     required convenience init?(coder aDecoder: NSCoder)
     {
         self.init();
+        
+        let dateValue = aDecoder.decodeObject(forKey: "dailySequenceMaximum_date");
+        let seqMax = aDecoder.decodeInt32(forKey: "dailySequenceMaximum_amount");
+                
+        if dateValue is Date?
+        {
+            self.dailySequenceMaximum = (dateValue as! Date, seqMax);
+        }
         
         self.overallAverageLength = aDecoder.decodeInt32(forKey: "overallAverageLength");
         self.overallLongestLength = aDecoder.decodeInt32(forKey: "overallLongestLength");
@@ -162,6 +175,18 @@ class StatisticsManager
         else
         {
             logError(withMessage: "Unable to open the statistics file.", export: true);
+        }
+    }
+    
+    public func resetData()
+    {
+        do
+        {
+            try FileManager.default.removeItem(atPath: getUserPreferencePath() + "/a.bin");
+        }
+        catch
+        {
+            logError(withMessage: "Unable to delete the statistics file.", export: true);
         }
     }
 }
