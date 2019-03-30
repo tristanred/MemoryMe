@@ -50,6 +50,8 @@ class MemoryMeGame
         
         assetsAreLoaded = false;
         
+        scene.debugMaxLength?.text = "\(StatisticsManager.default.current.dailySequenceMaximum.amount)";
+        
         print("Created game instance");
         logTrace(withMessage: "Created game instance", andProperties: [
             "Cell Width" : "\(cellWidth)",
@@ -175,6 +177,13 @@ class MemoryMeGame
             logTrace(withMessage: "Player Success", andProperties: ["Sequence Length" : "`\(self.MemorySequence!.GetSequenceShapes().count)`"], export: true)
             
             StatisticsManager.default.current.gamesWon += 1;
+            
+            if(MemorySequence!.GetCurrentLevelLength() > StatisticsManager.default.current.dailySequenceMaximum.amount)
+            {
+                Scene.debugMaxLength?.text = "\(MemorySequence!.GetCurrentLevelLength())";
+                StatisticsManager.default.current.dailySequenceMaximum.amount = Int32(MemorySequence!.GetCurrentLevelLength());
+            }
+
             StatisticsManager.default.save();
 
             // Sequence is finished. Add a shape to the sequence, shuffle the
@@ -231,7 +240,7 @@ class MemoryMeGame
                 shape.removeFromParent();
             }
             
-            self.MemorySequence!.RestartSequence();
+            self.MemorySequence!.ResetSequence();
             
             for shape in self.MemorySequence!.GetSequenceShapes()
             {

@@ -28,6 +28,8 @@ class GameScene: SKScene
     var labelWidthValue: SKLabelNode?;
     var labelHeightValue: SKLabelNode?;
     
+    var debugMaxLength: SKLabelNode?;
+    
     var Game: MemoryMeGame?;
     
     class func newGameScene() -> GameScene
@@ -76,6 +78,7 @@ class GameScene: SKScene
         
         scene.labelWidthValue = scene.childNode(withName: "//WidthValue") as? SKLabelNode;
         scene.labelHeightValue = scene.childNode(withName: "//HeightValue") as? SKLabelNode;
+        scene.debugMaxLength = scene.childNode(withName: "//MaxRecord") as? SKLabelNode;
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFit;

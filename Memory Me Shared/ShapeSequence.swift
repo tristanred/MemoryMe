@@ -73,9 +73,24 @@ class ShapeSequence
         self.shapesClicked.removeAll();
     }
     
+    func ResetSequence()
+    {
+        self.shapesInPlay.removeAll();
+        self.shapeSequence.removeAll();
+        self.shapesClicked.removeAll();
+        
+        self.EvolveSequence();
+    }
+
+    
     func GetSequenceShapes() -> [GameShape]
     {
         return shapesInPlay;
+    }
+    
+    func GetCurrentLevelLength() -> Int
+    {
+        return shapesInPlay.count;
     }
     
     func ShapeClicked(kind: ShapesKind)
