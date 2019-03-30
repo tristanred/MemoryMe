@@ -183,6 +183,8 @@ class StatisticsManager
         do
         {
             try FileManager.default.removeItem(atPath: getUserPreferencePath() + "/a.bin");
+            
+            current = UserStatistics();
         }
         catch
         {
