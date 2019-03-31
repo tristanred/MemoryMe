@@ -42,12 +42,7 @@ class GameScene: SKScene
         }
         
         logTrace(withMessage: "Loaded Game Scene");
-        
-        let x = StatisticsManager.default;
-        x.current.overallLongestLength = 100;
-        
-        x.save();
-        
+                
         let sceneSize = getSizeForRatio(size: getScreenSize());
         
         var orientationIsLandscape = false; // For debugging with Analytics
