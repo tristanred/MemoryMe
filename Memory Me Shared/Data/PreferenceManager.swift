@@ -53,7 +53,7 @@ class PreferenceManager
     {
         UserDefaults.standard.set(false, forKey: "debug_layer");
         UserDefaults.standard.set(false, forKey: "enabled_cheats");
-        UserDefaults.standard.set(false, forKey: "allows_tracking");
+        UserDefaults.standard.set(true, forKey: "allows_tracking");
     }
 }
 

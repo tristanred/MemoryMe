@@ -81,6 +81,8 @@
 		6A83FD4D220E7C8F00BFBEDE /* GameShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */; };
 		6ABE989B2249A97F00E89AF4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE989A2249A97F00E89AF4 /* SettingsViewModel.swift */; };
 		6ABE989C2249A97F00E89AF4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE989A2249A97F00E89AF4 /* SettingsViewModel.swift */; };
+		6ADEED2222506AB00061D06D /* MachineInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADEED2122506AB00061D06D /* MachineInfo.swift */; };
+		6ADEED2322506AB00061D06D /* MachineInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADEED2122506AB00061D06D /* MachineInfo.swift */; };
 		6AE796AF223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */; };
 		6AE796B0223D619E0095BEB2 /* ShapeGraphics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */; };
 		6AE9B2D52246997000EF2353 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE9B2D42246997000EF2353 /* SettingsViewController.swift */; };
@@ -140,6 +142,7 @@
 		6A277C3F2243280E00EB151F /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		6A83FD4C220E7C8F00BFBEDE /* GameShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShape.swift; sourceTree = "<group>"; };
 		6ABE989A2249A97F00E89AF4 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		6ADEED2122506AB00061D06D /* MachineInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineInfo.swift; sourceTree = "<group>"; };
 		6AE796AE223D619E0095BEB2 /* ShapeGraphics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShapeGraphics.xcassets; sourceTree = "<group>"; };
 		6AE9B2D42246997000EF2353 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6AF60A06222A0A9200194591 /* GridOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOrganizer.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		6A002C8321DF040E005B31F5 /* Memory Me Shared */ = {
 			isa = PBXGroup;
 			children = (
+				6ADEED2022506A730061D06D /* Information */,
 				6ABE98992249A90100E89AF4 /* ViewModels */,
 				6A03C03D2245B0F200F2D214 /* Exceptions */,
 				6A297A8A223EBE36004F7220 /* Data */,
@@ -306,6 +310,14 @@
 				6ABE989A2249A97F00E89AF4 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6ADEED2022506A730061D06D /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				6ADEED2122506AB00061D06D /* MachineInfo.swift */,
+			);
+			path = Information;
 			sourceTree = "<group>";
 		};
 		B692B95EFBDB0103EC5EC339 /* Pods */ = {
@@ -527,6 +539,7 @@
 				6A277C402243280E00EB151F /* PreferenceManager.swift in Sources */,
 				6A03C03B2245AB3100F2D214 /* TraceManager.swift in Sources */,
 				6A221EDD221F9044003FD05A /* ShapesDefinitions.swift in Sources */,
+				6ADEED2222506AB00061D06D /* MachineInfo.swift in Sources */,
 				6A002C9221DF0410005B31F5 /* GameViewController.swift in Sources */,
 				6AE9B2D52246997000EF2353 /* SettingsViewController.swift in Sources */,
 				6A221ED9221F8C54003FD05A /* ShapeSequence.swift in Sources */,
@@ -548,6 +561,7 @@
 				6A277C412243280E00EB151F /* PreferenceManager.swift in Sources */,
 				6A03C03C2245AB3100F2D214 /* TraceManager.swift in Sources */,
 				6ABE989C2249A97F00E89AF4 /* SettingsViewModel.swift in Sources */,
+				6ADEED2322506AB00061D06D /* MachineInfo.swift in Sources */,
 				6A221EDE221F9044003FD05A /* ShapesDefinitions.swift in Sources */,
 				6A002CA321DF0410005B31F5 /* GameViewController.swift in Sources */,
 				6A221EDA221F8C54003FD05A /* ShapeSequence.swift in Sources */,

@@ -17,16 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Initialize services
+        cycleDeviceID();
+        
+        // Initialize analytics
         MSAppCenter.start("5eb2309d-f030-4af0-9d96-9468b04ea5d3", withServices:[
             MSAnalytics.self,
             MSCrashes.self
         ]);
         
         MSAnalytics.setEnabled(true);
+        
+        MSAppCenter.setUserId(getDeviceUUID()?.uuidString ?? "");
 
         return true
     }
