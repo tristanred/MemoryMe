@@ -17,7 +17,6 @@ func logTrace(withMessage msg: String, export: Bool = false)
     let fmt = "Trace: \(msg)";
     
     print(fmt);
-    
     if(export && allowsTracking())
     {
         MSAnalytics.trackEvent(fmt, withProperties: [
@@ -41,6 +40,7 @@ func logTrace(withMessage msg: String, andProperties props: [String:String], exp
         let additionalProperties = props.merging([
             "type":"Trace",
             "ID": getDeviceUUID()?.uuidString ?? ""], uniquingKeysWith: { a,b in return a });
+        
         MSAnalytics.trackEvent(fmt, withProperties: additionalProperties);
     }
 }
@@ -49,9 +49,9 @@ func logMessage(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Message: \(msg)";
     
+    print(fmt);
     if(export && allowsTracking())
     {
-        print(fmt);
         MSAnalytics.trackEvent(fmt, withProperties: [
             "type": "Message",
             "ID": getDeviceUUID()?.uuidString ?? ""]);
@@ -62,9 +62,9 @@ func logWarning(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Warning: \(msg)";
     
+    print(fmt);
     if(export && allowsTracking())
     {
-        print(fmt);
         MSAnalytics.trackEvent(fmt, withProperties: [
             "type": "Warning",
             "ID": getDeviceUUID()?.uuidString ?? ""]);
@@ -75,9 +75,9 @@ func logError(withMessage msg: String, export: Bool = false)
 {
     let fmt = "Error: \(msg)";
     
+    print("[\(ErrorCode.NONE)]",  fmt);
     if(export && allowsTracking())
     {
-        print("[\(ErrorCode.NONE)]",  fmt);
         MSAnalytics.trackEvent(fmt, withProperties: [
             "type": "Error",
             "code": "\(ErrorCode.NONE)",
@@ -89,9 +89,9 @@ func logError(withErrorCode code: ErrorCode, andMessage msg: String, export: Boo
 {
     let fmt = "Error: \(msg)";
     
+    print("[\(code)]", fmt);
     if(export && allowsTracking())
     {
-        print("[\(code)]", fmt);
         MSAnalytics.trackEvent(fmt, withProperties: [
             "type": "Error",
             "code": "\(code)",
@@ -103,9 +103,9 @@ func logError(fromErrorClass err: BaseError, export: Bool = false)
 {
     let fmt = "Error: \(err.errorName), \(err.errorMessage)";
     
+    print("[\(err.errorCode)]", fmt);
     if(export && allowsTracking())
     {
-        print("[\(err.errorCode)]", fmt);
         MSAnalytics.trackEvent(fmt, withProperties: [
             "type": "Error",
             "code": "\(err.errorCode)",
