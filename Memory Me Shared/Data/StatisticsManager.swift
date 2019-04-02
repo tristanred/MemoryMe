@@ -58,9 +58,9 @@ class UserStatistics : NSObject, NSCoding
 func getUserPreferencePath() -> String
 {
     #if os(OSX)
-    return NSHomeDirectory();
+    return NSHomeDirectory() + "/Documents/";
     #else
-    return NSHomeDirectory();
+    return NSHomeDirectory() + "/Documents/";
     #endif
 }
 
@@ -93,14 +93,14 @@ class StatisticsManager
     init(archiveName: String)
     {
         current = UserStatistics();
-
-        statsFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + "/" + archiveName);
+        
+        statsFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + archiveName);
         
         if(statsFile == nil)
-        {
-            if FileManager.default.createFile(atPath: getUserPreferencePath() + "/" + archiveName, contents: nil, attributes: nil)
+        {            
+            if FileManager.default.createFile(atPath: getUserPreferencePath() + archiveName, contents: nil, attributes: nil)
             {
-                statsFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + "/" + archiveName);
+                statsFile = FileHandle(forUpdatingAtPath: getUserPreferencePath() + archiveName);
                 
                 if(statsFile == nil)
                 {
@@ -165,7 +165,7 @@ class StatisticsManager
             do
             {
                 let dat = try NSKeyedArchiver.archivedData(withRootObject: current, requiringSecureCoding: false);
-                try dat.write(to: URL(fileURLWithPath: getUserPreferencePath() + "/a.bin"));
+                try dat.write(to: URL(fileURLWithPath: getUserPreferencePath() + "a.bin"));
             }
             catch
             {
@@ -182,7 +182,7 @@ class StatisticsManager
     {
         do
         {
-            try FileManager.default.removeItem(atPath: getUserPreferencePath() + "/a.bin");
+            try FileManager.default.removeItem(atPath: getUserPreferencePath() + "a.bin");
             
             current = UserStatistics();
         }
