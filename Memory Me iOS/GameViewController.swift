@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController, SettingsChangeDelegate
 {
-    
+    var seenDisclaimers = false;
     var loadedGameScene: GameScene?;
     
     @IBAction func screenEdgeSwipe(_ sender: UIGestureRecognizer) {
@@ -29,10 +29,25 @@ class GameViewController: UIViewController, SettingsChangeDelegate
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated);
         
         self.navigationController?.setNavigationBarHidden(true, animated: false);
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        let showDisclaimers = PreferenceManager.current.GetSkipBetaView() == false;
+        
+        if(showDisclaimers && seenDisclaimers == false)
+        {
+            seenDisclaimers = true;
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "Disclaimer") as! BetaInfoViewController;
+            self.navigationController?.pushViewController(newViewController, animated: true);
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

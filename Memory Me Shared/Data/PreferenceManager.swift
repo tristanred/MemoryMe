@@ -49,11 +49,22 @@ class PreferenceManager
         UserDefaults.standard.set(value, forKey: "debug_layer");
     }
     
+    func GetSkipBetaView() -> Bool
+    {
+        return UserDefaults.standard.bool(forKey: "skip_betaview");
+    }
+    
+    func SetSkipBetaView(toValue value: Bool)
+    {
+        UserDefaults.standard.set(value, forKey: "skip_betaview");
+    }
+    
     func resetData()
     {
         UserDefaults.standard.set(false, forKey: "debug_layer");
         UserDefaults.standard.set(false, forKey: "enabled_cheats");
         UserDefaults.standard.set(true, forKey: "allows_tracking");
+        UserDefaults.standard.set(false, forKey: "skip_betaview");
     }
 }
 
@@ -72,4 +83,9 @@ func useDebugLayer() -> Bool
 func useCheats() -> Bool
 {
     return PreferenceManager.current.GetEnabledCheats();
+}
+
+func skipBetaView() -> Bool
+{
+    return PreferenceManager.current.GetSkipBetaView();
 }

@@ -1,0 +1,40 @@
+//
+//  BetaInfoViewController.swift
+//  Memory Me iOS
+//
+//  Created by Tristan Dube on 2019-03-31.
+//  Copyright © 2019 Tristan Dubé. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class BetaInfoViewController : UIViewController
+{
+    @IBOutlet weak var SkipViewSwitch: UISwitch!
+    
+    @IBAction func OkButtonClicked(_ sender: UIButton)
+    {
+        self.navigationController?.popViewController(animated: true);
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated);
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated);
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false);
+        
+        if(SkipViewSwitch.isOn)
+        {
+            PreferenceManager.current.SetSkipBetaView(toValue: true);
+            
+        }
+    }
+}

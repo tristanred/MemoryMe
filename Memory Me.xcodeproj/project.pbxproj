@@ -26,6 +26,7 @@
 		6A03C03C2245AB3100F2D214 /* TraceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A03C03A2245AB3100F2D214 /* TraceManager.swift */; };
 		6A03C03F2245B12A00F2D214 /* BaseException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A03C03E2245B12A00F2D214 /* BaseException.swift */; };
 		6A03C0402245B12A00F2D214 /* BaseException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A03C03E2245B12A00F2D214 /* BaseException.swift */; };
+		6A14AC9622514DF600F839E0 /* BetaInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14AC9522514DF600F839E0 /* BetaInfoViewController.swift */; };
 		6A221ED9221F8C54003FD05A /* ShapeSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A221ED8221F8C54003FD05A /* ShapeSequence.swift */; };
 		6A221EDA221F8C54003FD05A /* ShapeSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A221ED8221F8C54003FD05A /* ShapeSequence.swift */; };
 		6A221EDD221F9044003FD05A /* ShapesDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A221EDC221F9044003FD05A /* ShapesDefinitions.swift */; };
@@ -114,6 +115,7 @@
 		6A03C03A2245AB3100F2D214 /* TraceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceManager.swift; sourceTree = "<group>"; };
 		6A03C03E2245B12A00F2D214 /* BaseException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseException.swift; sourceTree = "<group>"; };
 		6A07E224223DD8F00025299E /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6A14AC9522514DF600F839E0 /* BetaInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaInfoViewController.swift; sourceTree = "<group>"; };
 		6A221ED8221F8C54003FD05A /* ShapeSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSequence.swift; sourceTree = "<group>"; };
 		6A221EDC221F9044003FD05A /* ShapesDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDefinitions.swift; sourceTree = "<group>"; };
 		6A26C11E2220E9C700CD649D /* Diamong_x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diamong_x1024.png; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				6A002C9621DF0410005B31F5 /* LaunchScreen.storyboard */,
 				6A002C9921DF0410005B31F5 /* Info.plist */,
 				6AE9B2D42246997000EF2353 /* SettingsViewController.swift */,
+				6A14AC9522514DF600F839E0 /* BetaInfoViewController.swift */,
 			);
 			path = "Memory Me iOS";
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				6AE9B2D52246997000EF2353 /* SettingsViewController.swift in Sources */,
 				6A221ED9221F8C54003FD05A /* ShapeSequence.swift in Sources */,
 				6A002C9021DF0410005B31F5 /* AppDelegate.swift in Sources */,
+				6A14AC9622514DF600F839E0 /* BetaInfoViewController.swift in Sources */,
 				6ABE989B2249A97F00E89AF4 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

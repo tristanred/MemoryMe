@@ -48,6 +48,8 @@ class SettingsViewController : UITableViewController
     @IBAction func deleteDataPressed(_ sender: UIButton)
     {
         settingsDelegate?.deleteDataRequest();
+        
+        self.navigationController?.popViewController(animated: true);
     }
     
 }

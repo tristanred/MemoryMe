@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="90J-FD-ZuK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="geU-H5-NiV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--BetaInfoViewController-->
         <scene sceneID="i2F-yu-0Sj">
             <objects>
-                <viewController id="90J-FD-ZuK" userLabel="BetaInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Disclaimer" id="90J-FD-ZuK" userLabel="BetaInfoViewController" customClass="BetaInfoViewController" customModule="Memory_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2uj-k3-c14">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +36,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="headTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-Bw-hbF" userLabel="BetaTextTwo">
                                 <rect key="frame" x="16" y="201" width="343" height="297"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <mutableString key="text">The game is going to have an option to enable analytics to send data to the developers in order to understand how players use the game and to report crashes and bad app behavior. The tracking option is ON BY DEFAULT in Beta builds but will be opt-In when the game is released. This is because we don’t want to track players by default, and we regard analytics as an option the users may want enabled as a favor to the developers. You may visit the options page in order to disable tracking in the Beta version or to understand what data is sent.</mutableString>
+                                <string key="text">The game is going to have an option to enable analytics to send data to the developers in order to understand how players use the game and to report crashes and bad app behavior. The tracking option is ON BY DEFAULT in Beta builds but will be opt-In when the game is released. This is because we don’t want to track players by default, and we regard analytics as an option the users may want enabled as a favor to the developers. You may visit the options page in order to disable tracking in the Beta version or to understand what data is sent.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="OK"/>
                                 <connections>
-                                    <segue destination="geU-H5-NiV" kind="show" id="kBz-an-XZw"/>
+                                    <action selector="OkButtonClicked:" destination="90J-FD-ZuK" eventType="primaryActionTriggered" id="zYY-RU-en9"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qqd-I1-MyO" userLabel="SkipSwitch">
@@ -64,10 +64,13 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="hA8-B2-7JK"/>
                     </view>
+                    <connections>
+                        <outlet property="SkipViewSwitch" destination="Qqd-I1-MyO" id="t4N-Sm-4cl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP8-mv-1uh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210" y="567"/>
+            <point key="canvasLocation" x="1681" y="-104"/>
         </scene>
         <!--Game Menu-->
         <scene sceneID="tXr-a1-R10">
@@ -228,12 +231,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BV1-FR-VrT" kind="relationship" relationship="rootViewController" id="aTN-fM-rqY"/>
+                        <segue destination="BV1-FR-VrT" kind="relationship" relationship="rootViewController" id="ib0-qc-IWF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fen-xY-A5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741.60000000000002" y="568.9655172413793"/>
+            <point key="canvasLocation" x="740" y="568"/>
         </scene>
     </scenes>
 </document>
