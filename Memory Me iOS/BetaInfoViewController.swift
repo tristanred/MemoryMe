@@ -37,4 +37,10 @@ class BetaInfoViewController : UIViewController
             
         }
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
+    {
+        // Doesn't do anything apparently.
+        return .portrait;
+    }
 }
