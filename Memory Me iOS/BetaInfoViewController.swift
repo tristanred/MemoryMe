@@ -34,8 +34,11 @@ class BetaInfoViewController : UIViewController
         if(SkipViewSwitch.isOn)
         {
             PreferenceManager.current.SetSkipBetaView(toValue: true);
-            
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask
