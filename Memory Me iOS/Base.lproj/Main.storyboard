@@ -19,67 +19,97 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5r7-q7-HIR">
-                                <rect key="frame" x="20" y="64" width="335" height="694"/>
+                                <rect key="frame" x="20" y="44" width="335" height="734"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Beta Disclaimer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRU-0e-LOb" userLabel="Title">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQ4-wR-Kxd" userLabel="BetaTextOne">
-                                        <rect key="frame" x="0.0" y="40.333333333333329" width="335" height="121.99999999999999"/>
-                                        <string key="text">This is a BETA version of the memory-Me app. This means it is in a varying stage of unfinishness and might crash/not work/behave in unexpected ways/summon demons the abyss/ and other unpleasant side-effects.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" textAlignment="center" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-Bw-hbF" userLabel="BetaTextTwo">
-                                        <rect key="frame" x="0.0" y="182.33333333333334" width="335" height="284.33333333333326"/>
-                                        <string key="text">The game is going to have an option to enable analytics to send data to the developers in order to understand how players use the game and to report crashes and bad app behavior. The tracking option is ON BY DEFAULT in Beta builds but will be opt-In when the game is released. This is because we don’t want to track players by default, and we regard analytics as an option the users may want enabled as a favor to the developers. You may visit the options page in order to disable tracking in the Beta version or to understand what data is sent.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWW-Lr-7C9">
+                                        <rect key="frame" x="0.0" y="40" width="335" height="496"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnM-qG-udG" userLabel="Contents">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="496"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQ4-wR-Kxd" userLabel="BetaTextOne">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="122"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="122" id="PTE-MX-GLa"/>
+                                                        </constraints>
+                                                        <string key="text">This is a BETA version of the memory-Me app. This means it is in a varying stage of unfinishness and might crash/not work/behave in unexpected ways/summon demons the abyss/ and other unpleasant side-effects.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-Bw-hbF" userLabel="BetaTextTwo">
+                                                        <rect key="frame" x="0.0" y="122" width="335" height="374"/>
+                                                        <string key="text">The game is going to have an option to enable analytics to send data to the developers in order to understand how players use the game and to report crashes and bad app behavior. The tracking option is ON BY DEFAULT in Beta builds but will be opt-In when the game is released. This is because we don’t want to track players by default, and we regard analytics as an option the users may want enabled as a favor to the developers. You may visit the options page in order to disable tracking in the Beta version or to understand what data is sent.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="9rD-Bw-hbF" secondAttribute="trailing" id="3FW-tC-TD3"/>
+                                                    <constraint firstItem="AQ4-wR-Kxd" firstAttribute="top" secondItem="EnM-qG-udG" secondAttribute="top" id="Epf-c3-2fs"/>
+                                                    <constraint firstItem="AQ4-wR-Kxd" firstAttribute="leading" secondItem="EnM-qG-udG" secondAttribute="leading" id="HZd-bb-R6q"/>
+                                                    <constraint firstItem="AQ4-wR-Kxd" firstAttribute="leading" secondItem="9rD-Bw-hbF" secondAttribute="leading" id="Vzo-vv-PhS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9rD-Bw-hbF" secondAttribute="bottom" id="dhZ-Au-l0o"/>
+                                                    <constraint firstItem="9rD-Bw-hbF" firstAttribute="top" secondItem="AQ4-wR-Kxd" secondAttribute="bottom" id="noW-Nh-gOh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AQ4-wR-Kxd" secondAttribute="trailing" id="qBe-mN-a6R"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="EnM-qG-udG" firstAttribute="top" secondItem="kWW-Lr-7C9" secondAttribute="top" id="Hw2-CE-HBJ"/>
+                                            <constraint firstItem="EnM-qG-udG" firstAttribute="centerY" secondItem="kWW-Lr-7C9" secondAttribute="centerY" id="MU4-gW-HtG"/>
+                                            <constraint firstItem="EnM-qG-udG" firstAttribute="centerX" secondItem="kWW-Lr-7C9" secondAttribute="centerX" id="TCr-tH-qsn"/>
+                                            <constraint firstItem="EnM-qG-udG" firstAttribute="bottom" secondItem="kWW-Lr-7C9" secondAttribute="bottom" id="W4H-xY-sX1"/>
+                                            <constraint firstItem="EnM-qG-udG" firstAttribute="leading" secondItem="kWW-Lr-7C9" secondAttribute="leading" id="mAG-Ed-VCq"/>
+                                            <constraint firstItem="EnM-qG-udG" firstAttribute="trailing" secondItem="kWW-Lr-7C9" secondAttribute="trailing" id="pc6-Fq-nyF"/>
+                                        </constraints>
+                                    </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XR5-1A-uU8" userLabel="OKButton">
-                                        <rect key="frame" x="0.0" y="486.66666666666663" width="335" height="30"/>
+                                        <rect key="frame" x="0.0" y="556" width="335" height="30"/>
                                         <state key="normal" title="OK"/>
                                         <connections>
                                             <action selector="OkButtonClicked:" destination="90J-FD-ZuK" eventType="primaryActionTriggered" id="zYY-RU-en9"/>
                                         </connections>
                                     </button>
                                     <view contentMode="top" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WHe-x8-04q">
-                                        <rect key="frame" x="0.0" y="536.66666666666663" width="335" height="157.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="606" width="335" height="128"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't show again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFd-0n-2qP" userLabel="SkipSwitchLabel">
-                                                <rect key="frame" x="52" y="9.9999999999999982" width="131.33333333333334" height="20.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't show again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFd-0n-2qP" userLabel="SkipSwitchLabel">
+                                                <rect key="frame" x="52" y="10" width="131" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qqd-I1-MyO" userLabel="SkipSwitch">
-                                                <rect key="frame" x="193.33333333333334" y="4.6666666666667425" width="51" height="31"/>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qqd-I1-MyO" userLabel="SkipSwitch">
+                                                <rect key="frame" x="193" y="5" width="51" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="HFd-0n-2qP" firstAttribute="top" secondItem="WHe-x8-04q" secondAttribute="top" constant="10" id="6CY-en-fCb"/>
-                                            <constraint firstItem="Qqd-I1-MyO" firstAttribute="leading" secondItem="HFd-0n-2qP" secondAttribute="trailing" constant="10" id="YMh-st-2jo"/>
-                                            <constraint firstItem="HFd-0n-2qP" firstAttribute="centerX" secondItem="WHe-x8-04q" secondAttribute="centerX" constant="-50" id="Za9-Bh-6SR"/>
-                                            <constraint firstItem="Qqd-I1-MyO" firstAttribute="centerY" secondItem="HFd-0n-2qP" secondAttribute="centerY" id="iH8-CN-1mz"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kWW-Lr-7C9" secondAttribute="bottom" constant="198" id="4HW-Gw-MO1"/>
+                                    <constraint firstItem="kWW-Lr-7C9" firstAttribute="top" secondItem="5r7-q7-HIR" secondAttribute="top" constant="40" id="LgA-sk-rHb"/>
+                                    <constraint firstItem="WHe-x8-04q" firstAttribute="top" secondItem="XR5-1A-uU8" secondAttribute="bottom" constant="20" id="wwt-DL-sVj"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hA8-B2-7JK" firstAttribute="trailing" secondItem="5r7-q7-HIR" secondAttribute="trailing" constant="20" id="CzE-ZI-1FM"/>
-                            <constraint firstItem="5r7-q7-HIR" firstAttribute="leading" secondItem="hA8-B2-7JK" secondAttribute="leading" constant="20" id="HyU-CM-4eO"/>
-                            <constraint firstItem="hA8-B2-7JK" firstAttribute="bottom" secondItem="5r7-q7-HIR" secondAttribute="bottom" constant="20" id="dB7-0l-KjK"/>
-                            <constraint firstItem="5r7-q7-HIR" firstAttribute="top" secondItem="hA8-B2-7JK" secondAttribute="top" constant="20" id="gog-1i-wfF"/>
-                            <constraint firstItem="5r7-q7-HIR" firstAttribute="centerX" secondItem="hA8-B2-7JK" secondAttribute="centerX" id="lfh-yH-Rs8"/>
-                            <constraint firstItem="5r7-q7-HIR" firstAttribute="height" relation="lessThanOrEqual" secondItem="hA8-B2-7JK" secondAttribute="height" constant="1" id="pcj-MY-Txf"/>
+                            <constraint firstItem="5r7-q7-HIR" firstAttribute="leading" secondItem="hA8-B2-7JK" secondAttribute="leading" constant="20" id="0OF-dj-9jn"/>
+                            <constraint firstItem="hA8-B2-7JK" firstAttribute="trailing" secondItem="5r7-q7-HIR" secondAttribute="trailing" constant="20" id="Pms-Gf-Tj0"/>
+                            <constraint firstItem="5r7-q7-HIR" firstAttribute="top" secondItem="hA8-B2-7JK" secondAttribute="top" id="kNe-YG-S1R"/>
+                            <constraint firstItem="hA8-B2-7JK" firstAttribute="bottom" secondItem="5r7-q7-HIR" secondAttribute="bottom" id="pw5-T5-8JG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hA8-B2-7JK"/>
                     </view>
@@ -89,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP8-mv-1uh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679.7101449275362" y="-104.46428571428571"/>
+            <point key="canvasLocation" x="1679.2" y="-104.92610837438424"/>
         </scene>
         <!--Game Menu-->
         <scene sceneID="tXr-a1-R10">
