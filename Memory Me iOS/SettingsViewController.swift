@@ -28,8 +28,12 @@ class SettingsViewController : UITableViewController
     @IBOutlet weak private var debugLayerSwitch: UISwitch!;
     @IBOutlet weak private var trackingSwitch: UISwitch!;
     
+    private var exitByDelete: Bool = false;
+    
     override func viewDidLoad()
     {
+        exitByDelete = false;
+        
         cheatsSwitch.isOn = viewModel.enableCheats;
         debugLayerSwitch.isOn = viewModel.showDebugLayer;
         trackingSwitch.isOn = viewModel.enableTracking;
@@ -37,19 +41,22 @@ class SettingsViewController : UITableViewController
     
     override func viewWillDisappear(_ animated: Bool)
     {
-        viewModel.enableCheats = cheatsSwitch.isOn;
-        viewModel.showDebugLayer = debugLayerSwitch.isOn;
-        viewModel.enableTracking = trackingSwitch.isOn;
-        
-        // TODO : Check if accepted or cancelled
-        settingsDelegate?.settingsAccepted(viewModel);
+        if(exitByDelete == false)
+        {
+            viewModel.enableCheats = cheatsSwitch.isOn;
+            viewModel.showDebugLayer = debugLayerSwitch.isOn;
+            viewModel.enableTracking = trackingSwitch.isOn;
+            
+            settingsDelegate?.settingsAccepted(viewModel);
+        }
     }
     
     @IBAction func deleteDataPressed(_ sender: UIButton)
     {
+        self.exitByDelete = true;
+        
         settingsDelegate?.deleteDataRequest();
         
         self.navigationController?.popViewController(animated: true);
     }
-    
 }

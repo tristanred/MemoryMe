@@ -181,6 +181,9 @@ class GameScene: SKScene
     {
         PreferenceManager.current.resetData();
         StatisticsManager.default.resetData();
+        
+        self.debugMaxLength?.text = String(StatisticsManager.default.current.dailySequenceMaximum.amount);
+        self.Game?.activateDebugLayer(state: PreferenceManager.current.GetUseDebugLayer());
     }
 }
 
