@@ -46,7 +46,8 @@ class GameViewController: UIViewController, SettingsChangeDelegate
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "Disclaimer") as! BetaInfoViewController;
-            self.navigationController?.pushViewController(newViewController, animated: true);
+            
+            self.present(newViewController, animated: false);
         }
     }
     

@@ -15,7 +15,7 @@ class BetaInfoViewController : UIViewController
     
     @IBAction func OkButtonClicked(_ sender: UIButton)
     {
-        self.navigationController?.popViewController(animated: true);
+        self.dismiss(animated: false, completion: nil);
     }
     
     override func viewWillAppear(_ animated: Bool)
