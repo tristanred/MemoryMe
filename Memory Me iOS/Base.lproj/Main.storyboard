@@ -27,7 +27,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWW-Lr-7C9">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWW-Lr-7C9">
                                         <rect key="frame" x="0.0" y="40" width="335" height="496"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnM-qG-udG" userLabel="Contents">
@@ -79,28 +79,33 @@
                                             <action selector="OkButtonClicked:" destination="90J-FD-ZuK" eventType="primaryActionTriggered" id="zYY-RU-en9"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="top" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WHe-x8-04q">
+                                    <view contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="WHe-x8-04q">
                                         <rect key="frame" x="0.0" y="606" width="335" height="128"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't show again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFd-0n-2qP" userLabel="SkipSwitchLabel">
-                                                <rect key="frame" x="52" y="10" width="131" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qqd-I1-MyO" userLabel="SkipSwitch">
+                                                <rect key="frame" x="193" y="48.666666666666629" width="51" height="31"/>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't show again" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFd-0n-2qP" userLabel="SkipSwitchLabel">
+                                                <rect key="frame" x="0.0" y="54.000000000000007" width="183" height="20.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qqd-I1-MyO" userLabel="SkipSwitch">
-                                                <rect key="frame" x="193" y="5" width="51" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="HFd-0n-2qP" firstAttribute="centerY" secondItem="Qqd-I1-MyO" secondAttribute="centerY" id="c3D-K3-eOq"/>
+                                            <constraint firstItem="Qqd-I1-MyO" firstAttribute="leading" secondItem="HFd-0n-2qP" secondAttribute="trailing" constant="10" id="eqb-Pk-ced"/>
+                                            <constraint firstItem="HFd-0n-2qP" firstAttribute="leading" secondItem="WHe-x8-04q" secondAttribute="leading" id="jcn-De-AfD"/>
+                                            <constraint firstItem="Qqd-I1-MyO" firstAttribute="centerX" secondItem="WHe-x8-04q" secondAttribute="centerX" constant="50" id="p24-up-nK9"/>
+                                            <constraint firstItem="Qqd-I1-MyO" firstAttribute="centerY" secondItem="WHe-x8-04q" secondAttribute="centerY" id="zBR-cb-gZC"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kWW-Lr-7C9" secondAttribute="bottom" constant="198" id="4HW-Gw-MO1"/>
+                                    <constraint firstItem="XR5-1A-uU8" firstAttribute="centerX" secondItem="5r7-q7-HIR" secondAttribute="centerX" id="8Uo-Ny-Drt"/>
                                     <constraint firstItem="kWW-Lr-7C9" firstAttribute="top" secondItem="5r7-q7-HIR" secondAttribute="top" constant="40" id="LgA-sk-rHb"/>
-                                    <constraint firstItem="WHe-x8-04q" firstAttribute="top" secondItem="XR5-1A-uU8" secondAttribute="bottom" constant="20" id="wwt-DL-sVj"/>
                                 </constraints>
                             </stackView>
                         </subviews>
