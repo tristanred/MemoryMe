@@ -36,6 +36,8 @@ class MemoryMeGame
     private let highscoreText: HighscoreText;
     private var highscoreTimer: Timer?;
     
+    private var shapeScale: Double = 1;
+    
     /**
      * Flag used to prevent clicking multiple shape touches, this helps
      * concurrency callbacks when shapes finish their animation.
@@ -218,8 +220,9 @@ class MemoryMeGame
                 self.Organizer.growGrid();
                 
                 // Using a 30% grow seems to work.
-                self.Scene.size.width *= 1.3;
-                self.Scene.size.height *= 1.3;
+//                self.Scene.size.width *= 1.3;
+//                self.Scene.size.height *= 1.3;
+                self.shapeScale *= 0.75;
                 self.ResizeGame(withFrame: CGRect(x: 0, y: 0, width: self.Scene.size.width, height: self.Scene.size.height));
                 
                 logTrace(withMessage: "Grid growing", andProperties: ["New Size" : "(w: `\(self.Scene.size.width)`, h: `\(self.Scene.size.height)`"], export: true)
@@ -229,6 +232,7 @@ class MemoryMeGame
             {
                 if let res = self.Organizer.addShape(shape: shape)
                 {
+                    res.shapeOnSlot!.setScale(CGFloat(shapeScale));
                     Scene.addChild(res.shapeOnSlot!);
                 }
                 else
@@ -260,6 +264,7 @@ class MemoryMeGame
             {
                 if let res = self.Organizer.addShape(shape: shape)
                 {
+                    res.shapeOnSlot!.setScale(CGFloat(shapeScale));
                     Scene.addChild(res.shapeOnSlot!);
                 }
                 else
