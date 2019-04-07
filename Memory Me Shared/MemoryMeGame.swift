@@ -55,13 +55,11 @@ class MemoryMeGame
         
         assetsAreLoaded = false;
         
-        scene.debugMaxLength?.text = "\(StatisticsManager.default.current.dailySequenceMaximum.amount)";
-        
         self.highscoreText = HighscoreText();
-        self.highscoreText.position = CGPoint(x: 500, y: 500);
+        self.highscoreText.position = CGPoint(x: scene.frame.maxX / 2, y: scene.frame.maxY * 0.025);
+        print("HS Text : \(self.highscoreText.position)");
         self.highscoreText.setText(10);
         scene.addChild(self.highscoreText);
-        
         
         print("Created game instance");
         logTrace(withMessage: "Created game instance", andProperties: [
@@ -196,7 +194,6 @@ class MemoryMeGame
             
             if(MemorySequence!.GetCurrentLevelLength() > StatisticsManager.default.current.dailySequenceMaximum.amount)
             {
-                Scene.debugMaxLength?.text = "\(MemorySequence!.GetCurrentLevelLength())";
                 StatisticsManager.default.current.dailySequenceMaximum.amount = Int32(MemorySequence!.GetCurrentLevelLength());
             }
 

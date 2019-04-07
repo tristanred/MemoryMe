@@ -25,11 +25,6 @@ class GameScene: SKScene
     var initialWidth: CGFloat = 0;
     var initialHeight: CGFloat = 0;
     
-    var labelWidthValue: SKLabelNode?;
-    var labelHeightValue: SKLabelNode?;
-    
-    var debugMaxLength: SKLabelNode?;
-    
     var Game: MemoryMeGame?;
     
     class func newGameScene() -> GameScene
@@ -70,10 +65,6 @@ class GameScene: SKScene
         
         scene.initialWidth = scene.size.width;
         scene.initialHeight = scene.size.height;
-        
-        scene.labelWidthValue = scene.childNode(withName: "//WidthValue") as? SKLabelNode;
-        scene.labelHeightValue = scene.childNode(withName: "//HeightValue") as? SKLabelNode;
-        scene.debugMaxLength = scene.childNode(withName: "//MaxRecord") as? SKLabelNode;
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFit;
@@ -149,8 +140,6 @@ class GameScene: SKScene
     
     func UpdateDebugInfo()
     {
-        self.labelWidthValue?.text = "\(round(self.size.width))";
-        self.labelHeightValue?.text = "\(round(self.size.height))";
     }
     
     override func update(_ currentTime: TimeInterval)
@@ -182,7 +171,6 @@ class GameScene: SKScene
         PreferenceManager.current.resetData();
         StatisticsManager.default.resetData();
         
-        self.debugMaxLength?.text = String(StatisticsManager.default.current.dailySequenceMaximum.amount);
         self.Game?.activateDebugLayer(state: PreferenceManager.current.GetUseDebugLayer());
     }
 }
