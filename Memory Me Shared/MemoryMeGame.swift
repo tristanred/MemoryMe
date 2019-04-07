@@ -33,6 +33,9 @@ class MemoryMeGame
     private var cellWidth: CGFloat;
     private var cellHeigth: CGFloat;
     
+    private let highscoreText: HighscoreText;
+    private var highscoreTimer: Timer?;
+    
     /**
      * Flag used to prevent clicking multiple shape touches, this helps
      * concurrency callbacks when shapes finish their animation.
@@ -51,6 +54,12 @@ class MemoryMeGame
         assetsAreLoaded = false;
         
         scene.debugMaxLength?.text = "\(StatisticsManager.default.current.dailySequenceMaximum.amount)";
+        
+        self.highscoreText = HighscoreText();
+        self.highscoreText.position = CGPoint(x: 500, y: 500);
+        self.highscoreText.setText(10);
+        scene.addChild(self.highscoreText);
+        
         
         print("Created game instance");
         logTrace(withMessage: "Created game instance", andProperties: [
@@ -82,6 +91,11 @@ class MemoryMeGame
             return;
         }
         
+        self.showHighscore();
+        highscoreTimer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { (Timer) in
+            self.showHighscore();
+        });
+
         logTrace(withMessage: "New game started");
         
         self.RecreateDebugRects();
@@ -261,6 +275,13 @@ class MemoryMeGame
     
     func Update()
     {
+    }
+    
+    func showHighscore()
+    {
+        let amount = StatisticsManager.default.current.dailySequenceMaximum.amount;
+        self.highscoreText.setText(Int(amount));
+        self.highscoreText.temporaryShow();
     }
     
     func ProcessClick(at point: CGPoint)
