@@ -10,7 +10,7 @@ import Foundation
 
 class UserStatistics : NSObject, NSCoding
 {
-    var dailySequenceMaximum: (date: Date, amount: Int32) = (Date(), 0);
+    var dailySequenceMaximum: (date: Date, amount: Int32) = (Date(timeIntervalSince1970: TimeInterval.zero), 0);
     
     var overallAverageLength: Int32 = 0;
     var overallLongestLength: Int32 = 0;

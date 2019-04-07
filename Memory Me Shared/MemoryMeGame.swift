@@ -61,6 +61,19 @@ class MemoryMeGame
         self.highscoreText.setText(10);
         scene.addChild(self.highscoreText);
         
+        let currentDate = StatisticsManager.default.current.dailySequenceMaximum.date;
+        let isSavedDateToday = Calendar.current.isDateInToday(currentDate);
+        
+        if(isSavedDateToday == false)
+        {
+            logTrace(withMessage: "Resetting the daily total");
+            
+            StatisticsManager.default.current.dailySequenceMaximum.amount = 0;
+            StatisticsManager.default.current.dailySequenceMaximum.date = Date();
+            
+            StatisticsManager.default.save();
+        }
+        
         print("Created game instance");
         logTrace(withMessage: "Created game instance", andProperties: [
             "Cell Width" : "\(cellWidth)",
