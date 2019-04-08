@@ -261,6 +261,9 @@ class MemoryMeGame
             StatisticsManager.default.current.gamesLost += 1;
             StatisticsManager.default.save();
             
+            self.shapeScale = 1.0;
+            
+            self.Organizer.reset();
             let clearedShapes = self.Organizer.clear();
             for shape in clearedShapes
             {
@@ -283,6 +286,7 @@ class MemoryMeGame
                 }
             }
             
+            self.RecreateDebugRects();
             self.Organizer.shuffleShapes();
             self.Organizer.resetShapePositions();
         }

@@ -307,12 +307,43 @@ class GridOrganizer
                 slot.shapeOnSlot!;
             };
         
+        self.gridPositions = SplitRectangle(columns: gridColumns, rows: gridRows, area: areaSize)
+            .map({ (rect) -> GridSlot in
+                return GridSlot(gridArea: rect);
+            });
+        
         for pos in gridPositions
         {
             pos.shapeOnSlot = nil;
         }
         
         return currentShapes;
+    }
+    
+    func reset()
+    {
+        if(areaSize.getSizeRatio() > ratio)
+        {
+            areaType = .Wide;
+            
+            if(areaSize.height > areaSize.width)
+            {
+                gridColumns = 2;
+                gridRows = 3;
+            }
+            else
+            {
+                gridColumns = 3;
+                gridRows = 2;
+            }
+        }
+        else
+        {
+            areaType = .Square;
+            
+            gridColumns = 3;
+            gridRows = 3;
+        }
     }
 }
 
