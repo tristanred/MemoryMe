@@ -69,8 +69,8 @@ class GameViewController: UIViewController, SettingsChangeDelegate
         skView.presentScene(scene)
         
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        //skView.showsFPS = true
+        //skView.showsNodeCount = true
     }
     
     func settingsAccepted(_ vm: SettingsViewModel)
