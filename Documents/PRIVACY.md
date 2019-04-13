@@ -1,6 +1,6 @@
 # Memory Me – Privacy Policy
 
-Last updated on: 10/04/2019
+Last updated on: 13/04/2019
 
 ## Personally Identifiable Information collected
 
