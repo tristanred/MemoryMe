@@ -19,7 +19,7 @@ If you want, you can go to the options page and enable the “Tracking” option
 
 ## Changes to the policy
 
-This policy might change from time to time. The full history of the policy can be found on GitHub over this link.
+This policy might change from time to time. The full history of the policy can be found on GitHub over this [link](https://github.com/tristanred/MemoryMe/blob/master/Documents/PRIVACY.md).
 
 ## Contact us
 
